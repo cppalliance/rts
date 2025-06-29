@@ -1,0 +1,23 @@
+/bin
+/bin64
+
+/__build__
+/toolchain.cmake
+
+# Emacs
+*#
+
+# Vim
+*~
+
+# Visual Studio
+/.vs
+/out
+
+# Visual Studio Code
+/.vscode
+
+# clangd
+/.cache
+/.clangd
+/compile_commands.json
