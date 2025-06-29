@@ -1,0 +1,47 @@
+#
+# Copyright (c) 2025 Mohammad Nejati
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+#
+# Official repository: https://github.com/cppalliance/runtime_services
+#
+
+import path ;
+import ../../config/checks/config : requires ;
+
+constant c11-requires :
+    [ requires
+    cxx11_constexpr
+    cxx11_decltype
+    cxx11_hdr_tuple
+    cxx11_template_aliases
+    cxx11_variadic_templates
+    ]
+    ;
+
+path-constant RUNTIME_SERVICES_ROOT : .. ;
+
+project boost/runtime_services
+    : requirements
+      $(c11-requires)
+      <link>shared:<define>BOOST_RUNTIME_SERVICES_DYN_LINK=1
+      <link>static:<define>BOOST_RUNTIME_SERVICES_STATIC_LINK=1
+      <define>BOOST_RUNTIME_SERVICES_SOURCE
+    : usage-requirements
+      <link>shared:<define>BOOST_RUNTIME_SERVICES_DYN_LINK=1
+      <link>static:<define>BOOST_RUNTIME_SERVICES_STATIC_LINK=1
+    : source-location $(RUNTIME_SERVICES_ROOT)
+    ;
+
+alias runtime_services_sources : [ path.glob-tree $(RUNTIME_SERVICES_ROOT)/src : *.cpp ] ;
+
+explicit runtime_services_sources ;
+
+lib boost_runtime_services
+   : runtime_services_sources
+   : requirements
+   : usage-requirements
+   ;
+
+boost-install boost_runtime_services ;
