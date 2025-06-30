@@ -7,9 +7,9 @@
 # Official repository: https://github.com/boostorg/url
 #
 
-name: runtime_services
+name: rts
 version: ~
-title: Boost.RuntimeServices
+title: Boost.RunTimeServices
 start_page: index.adoc
 asciidoc:
   attributes:

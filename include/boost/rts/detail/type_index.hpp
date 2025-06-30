@@ -5,11 +5,11 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/runtime_services
+// Official repository: https://github.com/cppalliance/rts
 //
 
-#ifndef BOOST_RUNTIME_SERVICES_DETAIL_TYPE_INDEX_HPP
-#define BOOST_RUNTIME_SERVICES_DETAIL_TYPE_INDEX_HPP
+#ifndef BOOST_RTS_DETAIL_TYPE_INDEX_HPP
+#define BOOST_RTS_DETAIL_TYPE_INDEX_HPP
 
 #include <boost/config.hpp>
 #include <boost/container_hash/hash.hpp>
@@ -17,7 +17,7 @@
 #include <boost/throw_exception.hpp>
 
 namespace boost {
-namespace runtime_services {
+namespace rts {
 namespace detail {
 
 struct type_index_impl
@@ -132,7 +132,7 @@ downcast(T &p)
 }
 
 } // namespace detail
-} // namespace runtime_services
+} // namespace rts
 } // namespace boost
 
 #endif

@@ -1,5 +1,5 @@
 {
-    "key": "runtime_services",
+    "key": "rts",
     "name": "Runtime Services",
     "authors": [
         "Vinnie Falco"

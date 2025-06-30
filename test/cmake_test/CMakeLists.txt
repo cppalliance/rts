@@ -13,10 +13,10 @@ set(__ignore__ ${CMAKE_C_COMPILER})
 set(__ignore__ ${CMAKE_C_FLAGS})
 
 if(BOOST_CI_INSTALL_TEST)
-  find_package(Boost CONFIG REQUIRED COMPONENTS runtime_services)
+  find_package(Boost CONFIG REQUIRED COMPONENTS rts)
 else()
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-  add_subdirectory(../.. boostorg/runtime_services)
+  add_subdirectory(../.. boostorg/rts)
 
   set(deps
     # Primary dependencies
@@ -25,6 +25,7 @@ else()
     container_hash
     core
     mp11
+    system
     throw_exception
 
     # Secondary dependencies
@@ -32,6 +33,9 @@ else()
     describe
     assert
     static_assert
+    variant2
+    winapi
+    predef
   )
 
   foreach(dep IN LISTS deps)
@@ -40,7 +44,7 @@ else()
 endif()
 
 add_executable(main main.cpp)
-target_link_libraries(main Boost::runtime_services)
+target_link_libraries(main Boost::rts)
 
 enable_testing()
 add_test(NAME main COMMAND main)

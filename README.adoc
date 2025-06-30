@@ -2,31 +2,31 @@
 |===
 
 |Branch
-|https://github.com/cppalliance/runtime_services/tree/master[`master`]
-|https://github.com/cppalliance/runtime_services/tree/develop[`develop`]
+|https://github.com/cppalliance/rts/tree/master[`master`]
+|https://github.com/cppalliance/rts/tree/develop[`develop`]
 
-|https://develop.runtime_services.cpp.al/[Docs]
-|https://master.runtime_services.cpp.al/[image:https://img.shields.io/badge/docs-master-brightgreen.svg[Documentation]]
-|https://develop.runtime_services.cpp.al/[image:https://img.shields.io/badge/docs-develop-brightgreen.svg[Documentation]]
+|https://develop.rts.cpp.al/[Docs]
+|https://master.rts.cpp.al/[image:https://img.shields.io/badge/docs-master-brightgreen.svg[Documentation]]
+|https://develop.rts.cpp.al/[image:https://img.shields.io/badge/docs-develop-brightgreen.svg[Documentation]]
 
 |https://github.com/[GitHub Actions]
-|https://github.com/cppalliance/runtime_services/actions/workflows/ci.yml?query=branch%3Amaster[image:https://github.com/cppalliance/runtime_services/actions/workflows/ci.yml/badge.svg?branch=master[CI]]
-|https://github.com/cppalliance/runtime_services/actions/workflows/ci.yml?query=branch%3Adevelop[image:https://github.com/cppalliance/runtime_services/actions/workflows/ci.yml/badge.svg?branch=develop[CI]]
+|https://github.com/cppalliance/rts/actions/workflows/ci.yml?query=branch%3Amaster[image:https://github.com/cppalliance/rts/actions/workflows/ci.yml/badge.svg?branch=master[CI]]
+|https://github.com/cppalliance/rts/actions/workflows/ci.yml?query=branch%3Adevelop[image:https://github.com/cppalliance/rts/actions/workflows/ci.yml/badge.svg?branch=develop[CI]]
 
 
 |https://drone.io/[Drone]
-|https://drone.cpp.al/cppalliance/runtime_services/branches[image:https://drone.cpp.al/api/badges/cppalliance/runtime_services/status.svg?ref=refs/heads/master[Build Status]]
-|https://drone.cpp.al/cppalliance/runtime_services/branches[image:https://drone.cpp.al/api/badges/cppalliance/runtime_services/status.svg?ref=refs/heads/develop[Build Status]]
+|https://drone.cpp.al/cppalliance/rts/branches[image:https://drone.cpp.al/api/badges/cppalliance/rts/status.svg?ref=refs/heads/master[Build Status]]
+|https://drone.cpp.al/cppalliance/rts/branches[image:https://drone.cpp.al/api/badges/cppalliance/rts/status.svg?ref=refs/heads/develop[Build Status]]
 
 |https://codecov.io[Codecov]
-|https://app.codecov.io/gh/cppalliance/runtime_services/tree/master[image:https://codecov.io/gh/cppalliance/runtime_services/branch/master/graph/badge.svg[codecov]]
-|https://app.codecov.io/gh/cppalliance/runtime_services/tree/develop[image:https://codecov.io/gh/cppalliance/runtime_services/branch/develop/graph/badge.svg[codecov]]
+|https://app.codecov.io/gh/cppalliance/rts/tree/master[image:https://codecov.io/gh/cppalliance/rts/branch/master/graph/badge.svg[codecov]]
+|https://app.codecov.io/gh/cppalliance/rts/tree/develop[image:https://codecov.io/gh/cppalliance/rts/branch/develop/graph/badge.svg[codecov]]
 
 |===
 
-== Boost.RuntimeServices
+== Boost.RunTimeServices
 
-Provides facilities for creating and accessing optional services during runtime.
+Provides facilities for creating and accessing services during runtime.
 
 === Visual Studio Solution Generation
 

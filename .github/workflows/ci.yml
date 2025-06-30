@@ -8,7 +8,7 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
-# Official repository: https://github.com/cppalliance/runtime_services/
+# Official repository: https://github.com/cppalliance/rts/
 #
 
 name: CI
@@ -760,10 +760,10 @@ jobs:
           tar -xf node-v20.9.0-linux-x64-glibc-217.tar.xz --strip-components 1 -C /node20217
           ldd /__e/node20/bin/node
 
-      - name: Clone Boost.RuntimeServices
+      - name: Clone Boost.RunTimeServices
         uses: actions/checkout@v4
         with:
-          path: runtime_services-root
+          path: rts-root
 
       - name: Setup C++
         uses: alandefreitas/cpp-actions/setup-cpp@v1.8.10
@@ -790,8 +790,8 @@ jobs:
           boost-dir: boost-source
           cache: false
           modules-exclude-paths: ''
-          scan-modules-dir: runtime_services-root
-          scan-modules-ignore: runtime_services
+          scan-modules-dir: rts-root
+          scan-modules-ignore: rts
 
       - name: Patch Boost
         id: patch
@@ -823,14 +823,14 @@ jobs:
           echo -E "boost_root=$boost_root" >> $GITHUB_OUTPUT
 
           # Patch boost-root with workspace module
-          cp -r "$workspace_root"/runtime_services-root "libs/$module"
+          cp -r "$workspace_root"/rts-root "libs/$module"
 
       - name: Boost B2 Workflow
         uses: alandefreitas/cpp-actions/b2-workflow@v1.8.10
         if: ${{ !matrix.coverage && !matrix.time-trace }}
         with:
           source-dir: boost-root
-          modules: runtime_services
+          modules: rts
           toolset: ${{ matrix.b2-toolset }}
           build-variant: ${{ matrix.build-type }}
           cxx: ${{ steps.setup-cpp.outputs.cxx || matrix.cxx || '' }}
@@ -868,7 +868,7 @@ jobs:
           export-compile-commands: ${{ matrix.time-trace }}
           package: false
           package-artifact: false
-          ref-source-dir: boost-root/libs/runtime_services
+          ref-source-dir: boost-root/libs/rts
           toolchain: ${{ (startsWith(matrix.runs-on, 'windows') && steps.patch-user-config.outputs.toolchain) || '' }}
 
       - name: Set Path
@@ -900,7 +900,7 @@ jobs:
           extra-args: |
             -D BOOST_CI_INSTALL_TEST=ON
             -D CMAKE_PREFIX_PATH=${{ steps.patch.outputs.workspace_root }}/.local
-          ref-source-dir: boost-root/libs/runtime_services
+          ref-source-dir: boost-root/libs/rts
           trace-commands: true
 
       - name: Subdirectory Integration Workflow
@@ -921,7 +921,7 @@ jobs:
           install: false
           cmake-version: '>=3.15'
           extra-args: -D BOOST_CI_INSTALL_TEST=OFF
-          ref-source-dir: boost-root/libs/runtime_services/test/cmake_test
+          ref-source-dir: boost-root/libs/rts/test/cmake_test
 
       - name: Root Project CMake Workflow
         uses: alandefreitas/cpp-actions/cmake-workflow@v1.8.10
@@ -951,7 +951,7 @@ jobs:
         uses: alandefreitas/cpp-actions/flamegraph@v1.8.10
         if: matrix.time-trace
         with:
-          source-dir: boost-root/libs/runtime_services
+          source-dir: boost-root/libs/rts
           build-dir: boost-root/__build_cmake_test__
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -994,7 +994,7 @@ jobs:
     timeout-minutes: 120
 
     steps:
-      - name: Clone Boost.RuntimeServices
+      - name: Clone Boost.RunTimeServices
         uses: actions/checkout@v4
         with:
           # Avoid the common API rate limit exceeded error in boostorg by including 100 latest commits in any case
@@ -1028,10 +1028,10 @@ jobs:
         with:
           apt-get: git cmake
 
-      - name: Clone Boost.RuntimeServices
+      - name: Clone Boost.RunTimeServices
         uses: actions/checkout@v4
         with:
-          path: runtime_services-root
+          path: rts-root
 
       - name: Clone Boost
         uses: alandefreitas/cpp-actions/boost-clone@v1.8.10
@@ -1041,8 +1041,8 @@ jobs:
           boost-dir: boost-source
           cache: false
           modules-exclude-paths: ''
-          scan-modules-dir: runtime_services-root
-          scan-modules-ignore: runtime_services
+          scan-modules-dir: rts-root
+          scan-modules-ignore: rts
 
       - name: Patch Boost
         id: patch
@@ -1074,7 +1074,7 @@ jobs:
           echo -E "boost_root=$boost_root" >> $GITHUB_OUTPUT
 
           # Patch boost-root with workspace module
-          cp -r "$workspace_root"/runtime_services-root "libs/$module"
+          cp -r "$workspace_root"/rts-root "libs/$module"
 
 
       - uses: actions/setup-node@v4
@@ -1093,7 +1093,7 @@ jobs:
           
           BOOST_SRC_DIR="$(pwd)/boost-root"
           export BOOST_SRC_DIR
-          cd boost-root/libs/runtime_services
+          cd boost-root/libs/rts
           
           cd doc
           bash ./build_antora.sh

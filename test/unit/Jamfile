@@ -4,7 +4,7 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
-# Official repository: https://github.com/cppalliance/runtime_services
+# Official repository: https://github.com/cppalliance/rts
 #
 
 import testing ;
@@ -12,7 +12,7 @@ import testing ;
 project
     : requirements
       $(c11-requires)
-      <library>/boost/runtime_services//boost_runtime_services
+      <library>/boost/rts//boost_rts
       <source>../../../url/extra/test_suite/test_main.cpp
       <source>../../../url/extra/test_suite/test_suite.cpp
       <include>.
@@ -22,6 +22,7 @@ project
 local SOURCES =
     service.cpp
     virtual_service.cpp
+    zlib.cpp
     ;
 
 for local f in $(SOURCES)

@@ -1,16 +1,16 @@
 site:
-  title: Boost.RuntimeServices
+  title: Boost.RunTimeServices
   url: https://antora.cppalliance.org/develop/lib/doc
-  start_page: runtime_services::index.adoc
+  start_page: rts::index.adoc
   robots: allow
   keys:
-    repo_url: 'https://github.com/cppalliance/runtime_services'
+    repo_url: 'https://github.com/cppalliance/rts'
 
 content:
   sources:
     - url: ..
       start_path: doc
-      edit_url: 'https://github.com/cppalliance/runtime_services/edit/{refname}/{path}'
+      edit_url: 'https://github.com/cppalliance/rts/edit/{refname}/{path}'
 
 ui:
   bundle:
