@@ -4,18 +4,18 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/runtime_services
+// Official repository: https://github.com/cppalliance/rts
 //
 
-#ifndef BOOST_RUNTIME_SERVICES_SERVICE_SERVICE_HPP
-#define BOOST_RUNTIME_SERVICES_SERVICE_SERVICE_HPP
+#ifndef BOOST_RTS_SERVICE_SERVICE_HPP
+#define BOOST_RTS_SERVICE_SERVICE_HPP
 
-#include <boost/runtime_services/detail/config.hpp>
+#include <boost/rts/detail/config.hpp>
 
 namespace boost {
-namespace runtime_services {
+namespace rts {
 
-#ifndef BOOST_RUNTIME_SERVICES_DOCS
+#ifndef BOOST_RTS_DOCS
 class services;
 #endif
 
@@ -24,7 +24,7 @@ class services;
 struct BOOST_SYMBOL_VISIBLE
     service
 {
-    BOOST_RUNTIME_SERVICES_DECL
+    BOOST_RTS_DECL
     virtual
     ~service() = 0;
 
@@ -41,7 +41,7 @@ private:
     friend class services;
 };
 
-} // runtime_services
+} // rts
 } // boost
 
 #endif

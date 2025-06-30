@@ -5,7 +5,7 @@
 // https://www.boost.org/LICENSE_1_0.txt
 //
 
-#include <boost/runtime_services.hpp>
+#include <boost/rts.hpp>
 
 int
 main()

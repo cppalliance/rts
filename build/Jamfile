@@ -4,11 +4,13 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
-# Official repository: https://github.com/cppalliance/runtime_services
+# Official repository: https://github.com/cppalliance/rts
 #
 
-import path ;
+import ac ;
 import ../../config/checks/config : requires ;
+
+using zlib ;
 
 constant c11-requires :
     [ requires
@@ -20,28 +22,43 @@ constant c11-requires :
     ]
     ;
 
-path-constant RUNTIME_SERVICES_ROOT : .. ;
+path-constant RTS_ROOT : .. ;
 
-project boost/runtime_services
+project boost/rts
     : requirements
       $(c11-requires)
-      <link>shared:<define>BOOST_RUNTIME_SERVICES_DYN_LINK=1
-      <link>static:<define>BOOST_RUNTIME_SERVICES_STATIC_LINK=1
-      <define>BOOST_RUNTIME_SERVICES_SOURCE
+      <link>shared:<define>BOOST_RTS_DYN_LINK=1
+      <link>static:<define>BOOST_RTS_STATIC_LINK=1
+      <define>BOOST_RTS_SOURCE
     : usage-requirements
-      <link>shared:<define>BOOST_RUNTIME_SERVICES_DYN_LINK=1
-      <link>static:<define>BOOST_RUNTIME_SERVICES_STATIC_LINK=1
-    : source-location $(RUNTIME_SERVICES_ROOT)
+      <link>shared:<define>BOOST_RTS_DYN_LINK=1
+      <link>static:<define>BOOST_RTS_STATIC_LINK=1
+    : source-location $(RTS_ROOT)
     ;
 
-alias runtime_services_sources : [ path.glob-tree $(RUNTIME_SERVICES_ROOT)/src : *.cpp ] ;
+alias rts_sources : [ glob-tree-ex ./src : *.cpp ] ;
 
-explicit runtime_services_sources ;
-
-lib boost_runtime_services
-   : runtime_services_sources
+lib boost_rts
+   : rts_sources
    : requirements
    : usage-requirements
    ;
 
-boost-install boost_runtime_services ;
+boost-install boost_rts ;
+
+
+# Zlib
+
+alias rts_zlib_sources : [ glob-tree-ex ./src_zlib : *.cpp ] ;
+
+lib boost_rts_zlib
+   : rts_zlib_sources
+   : requirements
+     <library>/boost/rts//boost_rts
+     [ ac.check-library /zlib//zlib : <library>/zlib//zlib : <build>no ]
+   : usage-requirements
+     <library>/boost/rts//boost_rts
+     <define>BOOST_RTS_HAS_ZLIB
+   ;
+
+boost-install boost_rts_zlib ;

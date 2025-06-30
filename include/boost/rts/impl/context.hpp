@@ -4,18 +4,18 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/runtime_services
+// Official repository: https://github.com/cppalliance/rts
 //
 
-#ifndef BOOST_RUNTIME_SERVICES_IMPL_CONTEXT_HPP
-#define BOOST_RUNTIME_SERVICES_IMPL_CONTEXT_HPP
+#ifndef BOOST_RTS_IMPL_CONTEXT_HPP
+#define BOOST_RTS_IMPL_CONTEXT_HPP
 
-#include <boost/runtime_services/detail/type_index.hpp>
+#include <boost/rts/detail/type_index.hpp>
 
 #include <boost/mp11/utility.hpp>
 
 namespace boost {
-namespace runtime_services {
+namespace rts {
 
 namespace detail {
 
@@ -87,7 +87,7 @@ get_service() const
     return *ps;
 }
 
-} // runtime_services
+} // rts
 } // boost
 
 #endif

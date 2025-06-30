@@ -9,20 +9,20 @@ file-patterns:
 
 # Filters
 include-symbols:
-  - 'boost::runtime_services::**'
+  - 'boost::rts::**'
 implementation-defined:
-  - 'boost::runtime_services::detail'
-  - 'boost::runtime_services::*::detail'
+  - 'boost::rts::detail'
+  - 'boost::rts::*::detail'
 inaccessible-members: never
 inaccessible-bases: never
 
 # Generator
 generate: adoc
-base-url: https://www.github.com/cppalliance/runtime_services/blob/develop/include/
+base-url: https://www.github.com/cppalliance/rts/blob/develop/include/
 
 # Style
 verbose: true
 multipage: true
 use-system-libc: true
 
-cmake: '-DCMAKE_CXX_STANDARD=20 -DBOOST_RUNTIME_SERVICES_BUILD_TESTS=OFF -DBOOST_RUNTIME_SERVICES_BUILD_EXAMPLES=OFF'
+cmake: '-DCMAKE_CXX_STANDARD=20 -DBOOST_RTS_BUILD_TESTS=OFF -DBOOST_RTS_BUILD_EXAMPLES=OFF'

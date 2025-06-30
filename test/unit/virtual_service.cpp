@@ -4,17 +4,17 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/runtime_services
+// Official repository: https://github.com/cppalliance/rts
 //
 
-#include <boost/runtime_services/context.hpp>
+#include <boost/rts/context.hpp>
 
 #include <boost/config.hpp>
 
 #include "test_helpers.hpp"
 
 namespace boost {
-namespace runtime_services {
+namespace rts {
 
 struct virtual_service :
 #ifdef BOOST_NO_RTTI
@@ -41,7 +41,7 @@ struct virtual_service_test {
   }
 };
 
-TEST_SUITE(virtual_service_test, "boost.runtime_services.virtual_service");
+TEST_SUITE(virtual_service_test, "boost.rts.virtual_service");
 
-} // namespace runtime_services
+} // namespace rts
 } // namespace boost

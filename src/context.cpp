@@ -4,15 +4,15 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/runtime_services
+// Official repository: https://github.com/cppalliance/rts
 //
 
-#include <boost/runtime_services/context.hpp>
+#include <boost/rts/context.hpp>
 //#include <boost/unordered_map.hpp> // doesn't support heterogenous lookup yet
 #include <unordered_map>
 
 namespace boost {
-namespace runtime_services {
+namespace rts {
 
 struct context::data
 {
@@ -70,5 +70,5 @@ make_service_impl(
     return *result.first->second;
 }
 
-} // runtime_services
+} // rts
 } // boost
