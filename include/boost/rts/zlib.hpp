@@ -14,10 +14,10 @@
 #include <boost/rts/zlib/compression_method.hpp>
 #include <boost/rts/zlib/compression_strategy.hpp>
 #include <boost/rts/zlib/data_type.hpp>
-#include <boost/rts/zlib/deflate_service.hpp>
+#include <boost/rts/zlib/deflate.hpp>
 #include <boost/rts/zlib/error.hpp>
 #include <boost/rts/zlib/flush.hpp>
-#include <boost/rts/zlib/inflate_service.hpp>
+#include <boost/rts/zlib/inflate.hpp>
 #include <boost/rts/zlib/stream.hpp>
 
 #endif

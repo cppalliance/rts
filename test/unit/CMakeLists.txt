@@ -17,6 +17,7 @@ set(PFILES
     CMakeLists.txt
     Jamfile
 
+    brotli.cpp
     service.cpp
     test_helpers.hpp
     virtual_service.cpp
@@ -34,6 +35,10 @@ target_link_libraries(
 
 if (TARGET boost_rts_zlib)
     target_link_libraries(boost_rts_tests PRIVATE boost_rts_zlib)
+endif ()
+
+if (TARGET boost_rts_brotli)
+    target_link_libraries(boost_rts_tests PRIVATE boost_rts_brotli)
 endif ()
 
 add_test(NAME boost_rts_tests COMMAND boost_rts_tests)

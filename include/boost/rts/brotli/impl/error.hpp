@@ -8,8 +8,8 @@
 // Official repository: https://github.com/cppalliance/rts
 //
 
-#ifndef BOOST_RTS_ZLIB_IMPL_ERROR_HPP
-#define BOOST_RTS_ZLIB_IMPL_ERROR_HPP
+#ifndef BOOST_RTS_BROTLI_IMPL_ERROR_HPP
+#define BOOST_RTS_BROTLI_IMPL_ERROR_HPP
 
 #include <boost/rts/detail/config.hpp>
 
@@ -21,14 +21,14 @@ namespace boost {
 namespace system {
 template<>
 struct is_error_code_enum<
-    ::boost::rts::zlib::error>
+    ::boost::rts::brotli::error>
 {
     static bool const value = true;
 };
 } // system
 
 namespace rts {
-namespace zlib {
+namespace brotli {
 
 namespace detail {
 
@@ -46,7 +46,7 @@ struct BOOST_SYMBOL_VISIBLE
         int, char*, std::size_t
             ) const noexcept override;
     BOOST_SYSTEM_CONSTEXPR error_cat_type()
-        : error_category(0x43fd42f819852b73)
+        : error_category(0xc38951ab8832fb6f)
     {
     }
 };
@@ -68,7 +68,7 @@ make_error_code(
         detail::error_cat};
 }
 
-} // zlib
+} // brotli
 } // rts
 } // boost
 

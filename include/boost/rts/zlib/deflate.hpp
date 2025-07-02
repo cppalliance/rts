@@ -8,8 +8,8 @@
 // Official repository: https://github.com/cppalliance/rts
 //
 
-#ifndef BOOST_RTS_ZLIB_DEFLATE_SERVICE_HPP
-#define BOOST_RTS_ZLIB_DEFLATE_SERVICE_HPP
+#ifndef BOOST_RTS_ZLIB_DEFLATE_HPP
+#define BOOST_RTS_ZLIB_DEFLATE_HPP
 
 #include <boost/rts/context.hpp>
 #include <boost/rts/detail/config.hpp>

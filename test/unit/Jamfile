@@ -7,19 +7,24 @@
 # Official repository: https://github.com/cppalliance/rts
 #
 
+import ac ;
 import testing ;
 
 project
     : requirements
       $(c11-requires)
       <library>/boost/rts//boost_rts
+      [ ac.check-library /boost/rts//boost_rts_zlib : <library>/boost/rts//boost_rts_zlib : ]
+      [ ac.check-library /boost/rts//boost_rts_brotli : <library>/boost/rts//boost_rts_brotli : ]
       <source>../../../url/extra/test_suite/test_main.cpp
       <source>../../../url/extra/test_suite/test_suite.cpp
       <include>.
       <include>../../../url/extra/test_suite
+      <target-os>darwin,<undefined-sanitizer>norecover:<link>static
     ;
 
 local SOURCES =
+    brotli.cpp
     service.cpp
     virtual_service.cpp
     zlib.cpp

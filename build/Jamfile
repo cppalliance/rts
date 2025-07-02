@@ -10,8 +10,6 @@
 import ac ;
 import ../../config/checks/config : requires ;
 
-using zlib ;
-
 constant c11-requires :
     [ requires
     cxx11_constexpr
@@ -25,40 +23,59 @@ constant c11-requires :
 path-constant RTS_ROOT : .. ;
 
 project boost/rts
-    : requirements
-      $(c11-requires)
-      <link>shared:<define>BOOST_RTS_DYN_LINK=1
-      <link>static:<define>BOOST_RTS_STATIC_LINK=1
-      <define>BOOST_RTS_SOURCE
-    : usage-requirements
-      <link>shared:<define>BOOST_RTS_DYN_LINK=1
-      <link>static:<define>BOOST_RTS_STATIC_LINK=1
-    : source-location $(RTS_ROOT)
-    ;
+  : requirements
+    $(c11-requires)
+    <define>BOOST_RTS_SOURCE
+  : common-requirements
+    <link>shared:<define>BOOST_RTS_DYN_LINK
+    <link>static:<define>BOOST_RTS_STATIC_LINK
+  : usage-requirements
+    <define>BOOST_RTS_NO_LIB
+  : source-location $(RTS_ROOT)
+  ;
 
 alias rts_sources : [ glob-tree-ex ./src : *.cpp ] ;
 
 lib boost_rts
-   : rts_sources
-   : requirements
-   : usage-requirements
-   ;
+  : rts_sources
+  : requirements
+  : usage-requirements
+  ;
 
 boost-install boost_rts ;
 
-
 # Zlib
+using zlib ;
 
 alias rts_zlib_sources : [ glob-tree-ex ./src_zlib : *.cpp ] ;
 
 lib boost_rts_zlib
-   : rts_zlib_sources
-   : requirements
-     <library>/boost/rts//boost_rts
-     [ ac.check-library /zlib//zlib : <library>/zlib//zlib : <build>no ]
-   : usage-requirements
-     <library>/boost/rts//boost_rts
-     <define>BOOST_RTS_HAS_ZLIB
-   ;
+  : rts_zlib_sources
+  : requirements
+    <library>/boost/rts//boost_rts
+    [ ac.check-library /zlib//zlib : <library>/zlib//zlib : <build>no ]
+  : usage-requirements
+    <library>/boost/rts//boost_rts
+    <define>BOOST_RTS_HAS_ZLIB
+  ;
 
 boost-install boost_rts_zlib ;
+
+# Brotli
+using brotli ;
+
+alias rts_brotli_sources : [ glob-tree-ex ./src_brotli : *.cpp ] ;
+
+lib boost_rts_brotli
+  : rts_brotli_sources
+  : requirements
+    <library>/boost/rts//boost_rts
+    [ ac.check-library /brotli//brotlicommon : <library>/brotli//brotlicommon : <build>no ]
+    [ ac.check-library /brotli//brotlidec : <library>/brotli//brotlidec : <build>no ]
+    [ ac.check-library /brotli//brotlienc : <library>/brotli//brotlienc : <build>no ]
+  : usage-requirements
+    <library>/boost/rts//boost_rts
+    <define>BOOST_RTS_HAS_BROTLI
+  ;
+
+boost-install boost_rts_brotli ;
