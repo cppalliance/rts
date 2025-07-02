@@ -18,7 +18,7 @@ const char*
 error_cat_type::
 name() const noexcept
 {
-    return "boost.http.proto.zlib";
+    return "boost.rts.zlib";
 }
 
 bool

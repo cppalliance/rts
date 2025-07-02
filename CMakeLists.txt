@@ -165,6 +165,21 @@ if (ZLIB_FOUND)
     target_compile_definitions(boost_rts_zlib PRIVATE BOOST_RTS_SOURCE)
 endif ()
 
+# Brotli
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+find_package(Brotli)
+if (Brotli_FOUND)
+    file(GLOB_RECURSE BOOST_RTS_BROTLI_SOURCES CONFIGURE_DEPENDS src_brotli/*.cpp src_brotli/*.hpp)
+    file(GLOB_RECURSE BOOST_RTS_BROTLI_HEADERS CONFIGURE_DEPENDS include/boost/rts/brotli/*.hpp)
+    source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src_brotli PREFIX "src" FILES ${BOOST_RTS_BROTLI_SOURCES})
+    add_library(boost_rts_brotli build/Jamfile ${BOOST_RTS_BROTLI_HEADERS} ${BOOST_RTS_BROTLI_SOURCES})
+    add_library(Boost::rts_brotli ALIAS boost_rts_brotli)
+    target_link_libraries(boost_rts_brotli PUBLIC boost_rts)
+    target_link_libraries(boost_rts_brotli PRIVATE Brotli::common Brotli::decoder Brotli::encoder)
+    target_compile_definitions(boost_rts_brotli PUBLIC BOOST_RTS_HAS_BROTLI)
+    target_compile_definitions(boost_rts_brotli PRIVATE BOOST_RTS_SOURCE)
+endif ()
+
 #-------------------------------------------------
 #
 # Tests

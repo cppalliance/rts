@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <explicit-failures-markup>
-    <!-- http_proto -->
     <library name="rts">
         <mark-unusable>
             <toolset name="*c++98"/>

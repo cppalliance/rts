@@ -15,7 +15,7 @@ def main(ctx):
         # Compilers
         [
             'gcc >=5.0',
-            'clang >=3.8',
+            'clang >=3.9',
             'msvc >=14.1',
             'arm64-gcc latest',
             's390x-gcc latest',
