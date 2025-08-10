@@ -12,6 +12,7 @@
 
 #include <boost/rts/brotli/decode.hpp>
 #include <boost/rts/brotli/encode.hpp>
+#include <boost/rts/brotli/error.hpp>
 #include <boost/rts/brotli/shared_dictionary.hpp>
 #include <boost/rts/brotli/types.hpp>
 

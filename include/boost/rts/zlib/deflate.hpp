@@ -11,7 +11,7 @@
 #ifndef BOOST_RTS_ZLIB_DEFLATE_HPP
 #define BOOST_RTS_ZLIB_DEFLATE_HPP
 
-#include <boost/rts/context.hpp>
+#include <boost/rts/context_fwd.hpp>
 #include <boost/rts/detail/config.hpp>
 #include <boost/rts/zlib/stream.hpp>
 

@@ -8,6 +8,7 @@
 //
 
 #include <boost/rts/brotli/shared_dictionary.hpp>
+#include <boost/rts/context.hpp>
 
 #if 0
 #include <brotli/shared_dictionary.h>

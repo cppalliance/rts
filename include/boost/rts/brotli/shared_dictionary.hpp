@@ -11,7 +11,8 @@
 #define BOOST_RTS_BROTLI_SHARED_DICTIONARY_HPP
 
 #include <boost/rts/brotli/types.hpp>
-#include <boost/rts/context.hpp>
+#include <boost/rts/context_fwd.hpp>
+#include <boost/rts/service.hpp>
 
 namespace boost {
 namespace rts {
