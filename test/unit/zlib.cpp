@@ -7,6 +7,7 @@
 // Official repository: https://github.com/cppalliance/rts
 //
 
+#include <boost/rts/context.hpp>
 #include <boost/rts/zlib.hpp>
 
 #include "test_helpers.hpp"

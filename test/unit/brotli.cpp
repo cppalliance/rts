@@ -8,6 +8,7 @@
 //
 
 #include <boost/rts/brotli.hpp>
+#include <boost/rts/context.hpp>
 
 #include "test_helpers.hpp"
 

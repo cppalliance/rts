@@ -8,6 +8,7 @@
 // Official repository: https://github.com/cppalliance/rts
 //
 
+#include <boost/rts/context.hpp>
 #include <boost/rts/zlib/deflate.hpp>
 
 #include "stream_cast.hpp"

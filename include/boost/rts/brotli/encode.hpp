@@ -12,6 +12,8 @@
 
 #include <boost/rts/brotli/shared_dictionary.hpp>
 
+#include <cstdint>
+
 namespace boost {
 namespace rts {
 namespace brotli {

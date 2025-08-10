@@ -70,6 +70,7 @@ jobs:
             generator: "Visual Studio 17 2022"
             is-latest: true
             name: "MSVC 14.42: C++17-20"
+            shared: false
             build-type: "Release"
             build-cmake: true
 
@@ -82,6 +83,7 @@ jobs:
             generator: "Visual Studio 17 2022"
             is-latest: true
             name: "MSVC 14.34: C++17-20"
+            shared: true
             build-type: "Release"
             build-cmake: true
 
@@ -94,6 +96,7 @@ jobs:
             generator: "Visual Studio 17 2022"
             is-latest: true
             name: "MSVC 14.34: C++17-20 (x86)"
+            shared: false
             x86: true
             build-type: "Release"
 
@@ -105,7 +108,7 @@ jobs:
             b2-toolset: "msvc-14.3"
             generator: "Visual Studio 17 2022"
             is-latest: true
-            name: "MSVC 14.34: C++17-20 (shared)"
+            name: "MSVC 14.34: C++17-20"
             shared: true
             build-type: "Release"
             build-cmake: true
@@ -120,6 +123,7 @@ jobs:
             is-latest: true
             is-earliest: true
             name: "Windows-Clang"
+            shared: false
             build-type: "Release"
             build-cmake: true
 
@@ -133,6 +137,7 @@ jobs:
             is-latest: true
             is-earliest: true
             name: "MinGW"
+            shared: true
             build-type: "Release"
             build-cmake: true
 
@@ -145,8 +150,8 @@ jobs:
             generator: "MinGW Makefiles"
             is-latest: true
             is-earliest: true
-            name: "MinGW (shared)"
-            shared: true
+            name: "MinGW"
+            shared: false
             build-type: "Release"
             build-cmake: true
 
@@ -161,6 +166,7 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Apple-Clang (macOS 15)"
+            shared: true
             build-type: "Release"
             build-cmake: true
 
@@ -172,6 +178,7 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Apple-Clang (macOS 15, ubsan)"
+            shared: false
             build-type: "RelWithDebInfo"
             ubsan: true
 
@@ -183,6 +190,7 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Apple-Clang (macOS 15, asan)"
+            shared: true
             build-type: "RelWithDebInfo"
             asan: true
 
@@ -193,6 +201,7 @@ jobs:
             runs-on: "macos-14"
             b2-toolset: "clang"
             name: "Apple-Clang (macOS 14)"
+            shared: false
             build-type: "Release"
             build-cmake: true
 
@@ -203,6 +212,7 @@ jobs:
             runs-on: "macos-13"
             b2-toolset: "clang"
             name: "Apple-Clang (macOS 13)"
+            shared: true
             build-type: "Release"
             build-cmake: true
 
@@ -220,8 +230,8 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 14: C++17-20"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
             build-cmake: true
 
           - compiler: "gcc"
@@ -235,6 +245,7 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 14: C++17-20 (no zlib)"
+            shared: true
             build-type: "Release"
             build-cmake: true
 
@@ -249,9 +260,10 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 14: C++17-20 (x86)"
+            shared: false
             x86: true
             build-type: "Release"
-            install: "gcc-14-multilib g++-14-multilib zlib1g-dev libbrotli-dev zlib1g-dev:i386 libbrotli-dev:i386"
+            install: "gcc-14-multilib g++-14-multilib"
 
           - compiler: "gcc"
             version: "14"
@@ -263,10 +275,9 @@ jobs:
             container: "ubuntu:24.04"
             b2-toolset: "gcc"
             is-latest: true
-            name: "GCC 14: C++17-20 (shared)"
+            name: "GCC 14: C++17-20"
             shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
             build-cmake: true
 
           - compiler: "gcc"
@@ -279,11 +290,11 @@ jobs:
             container: "ubuntu:24.04"
             b2-toolset: "gcc"
             is-latest: true
-            name: "GCC 14: C++17-20 (shared, x86)"
-            shared: true
+            name: "GCC 14: C++17-20 (x86)"
+            shared: false
             x86: true
             build-type: "Release"
-            install: "gcc-14-multilib g++-14-multilib zlib1g-dev libbrotli-dev zlib1g-dev:i386 libbrotli-dev:i386"
+            install: "gcc-14-multilib g++-14-multilib"
             build-cmake: true
 
           - compiler: "gcc"
@@ -297,9 +308,9 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 14: C++17-20 (asan)"
+            shared: true
             asan: true
             build-type: "RelWithDebInfo"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "14"
@@ -312,10 +323,11 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 14: C++17-20 (asan, x86)"
+            shared: false
             asan: true
             x86: true
             build-type: "RelWithDebInfo"
-            install: "gcc-14-multilib g++-14-multilib zlib1g-dev libbrotli-dev zlib1g-dev:i386 libbrotli-dev:i386"
+            install: "gcc-14-multilib g++-14-multilib"
 
           - compiler: "gcc"
             version: "14"
@@ -328,9 +340,9 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 14: C++17-20 (ubsan)"
+            shared: true
             ubsan: true
             build-type: "RelWithDebInfo"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "14"
@@ -343,10 +355,11 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 14: C++17-20 (ubsan, x86)"
+            shared: false
             ubsan: true
             x86: true
             build-type: "RelWithDebInfo"
-            install: "gcc-14-multilib g++-14-multilib zlib1g-dev libbrotli-dev zlib1g-dev:i386 libbrotli-dev:i386"
+            install: "gcc-14-multilib g++-14-multilib"
 
           - compiler: "gcc"
             version: "13"
@@ -357,8 +370,8 @@ jobs:
             runs-on: "ubuntu-24.04"
             b2-toolset: "gcc"
             name: "GCC 13: C++17-20"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "13"
@@ -370,11 +383,12 @@ jobs:
             b2-toolset: "gcc"
             is-latest: true
             name: "GCC 13: C++17-20 (coverage)"
+            shared: false
             coverage: true
             build-type: "Debug"
             cxxflags: "--coverage -fprofile-arcs -ftest-coverage"
             ccflags: "--coverage -fprofile-arcs -ftest-coverage"
-            install: "lcov zlib1g-dev libbrotli-dev wget unzip"
+            install: "lcov wget unzip"
 
           - compiler: "gcc"
             version: "12"
@@ -386,8 +400,8 @@ jobs:
             container: "ubuntu:22.04"
             b2-toolset: "gcc"
             name: "GCC 12: C++17-20"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "11"
@@ -399,8 +413,8 @@ jobs:
             container: "ubuntu:22.04"
             b2-toolset: "gcc"
             name: "GCC 11: C++17-20"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "10"
@@ -412,8 +426,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "gcc"
             name: "GCC 10: C++14-17"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "9"
@@ -425,8 +439,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "gcc"
             name: "GCC 9: C++14-17"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "8"
@@ -438,8 +452,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "gcc"
             name: "GCC 8: C++14-17"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "7"
@@ -451,8 +465,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "gcc"
             name: "GCC 7: C++14-17"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "6"
@@ -464,8 +478,8 @@ jobs:
             container: "ubuntu:18.04"
             b2-toolset: "gcc"
             name: "GCC 6: C++11-14"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "gcc"
             version: "5"
@@ -478,8 +492,8 @@ jobs:
             b2-toolset: "gcc"
             is-earliest: true
             name: "GCC 5: C++11"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "18"
@@ -492,8 +506,8 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Clang 18: C++17-20"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
             build-cmake: true
 
           - compiler: "clang"
@@ -507,9 +521,10 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Clang 18: C++17-20 (x86)"
+            shared: false
             x86: true
             build-type: "Release"
-            install: "gcc-multilib g++-multilib zlib1g-dev libbrotli-dev zlib1g-dev:i386 libbrotli-dev:i386"
+            install: "gcc-multilib g++-multilib"
 
           - compiler: "clang"
             version: "18"
@@ -522,11 +537,12 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Clang 18: C++20 (time-trace)"
+            shared: true
             time-trace: true
             build-type: "Release"
             cxxflags: "-ftime-trace"
             ccflags: "-ftime-trace"
-            install: "zlib1g-dev libbrotli-dev wget unzip"
+            install: " wget unzip"
 
           - compiler: "clang"
             version: "18"
@@ -539,9 +555,9 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Clang 18: C++17-20 (asan)"
+            shared: false
             asan: true
             build-type: "RelWithDebInfo"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "18"
@@ -554,10 +570,11 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Clang 18: C++17-20 (asan, x86)"
+            shared: true
             asan: true
             x86: true
             build-type: "RelWithDebInfo"
-            install: "gcc-multilib g++-multilib zlib1g-dev libbrotli-dev zlib1g-dev:i386 libbrotli-dev:i386"
+            install: "gcc-multilib g++-multilib"
 
           - compiler: "clang"
             version: "18"
@@ -570,9 +587,9 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Clang 18: C++17-20 (ubsan)"
+            shared: false
             ubsan: true
             build-type: "RelWithDebInfo"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "18"
@@ -585,10 +602,11 @@ jobs:
             b2-toolset: "clang"
             is-latest: true
             name: "Clang 18: C++17-20 (ubsan, x86)"
+            shared: true
             ubsan: true
             x86: true
             build-type: "RelWithDebInfo"
-            install: "gcc-multilib g++-multilib zlib1g-dev libbrotli-dev zlib1g-dev:i386 libbrotli-dev:i386"
+            install: "gcc-multilib g++-multilib"
 
           - compiler: "clang"
             version: "17"
@@ -599,8 +617,8 @@ jobs:
             runs-on: "ubuntu-24.04"
             b2-toolset: "clang"
             name: "Clang 17: C++17-20"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "16"
@@ -611,8 +629,8 @@ jobs:
             runs-on: "ubuntu-24.04"
             b2-toolset: "clang"
             name: "Clang 16: C++17-20"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "15"
@@ -624,8 +642,8 @@ jobs:
             container: "ubuntu:22.04"
             b2-toolset: "clang"
             name: "Clang 15: C++17-20"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "14"
@@ -637,8 +655,8 @@ jobs:
             container: "ubuntu:22.04"
             b2-toolset: "clang"
             name: "Clang 14: C++17-20"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "13"
@@ -650,8 +668,8 @@ jobs:
             container: "ubuntu:22.04"
             b2-toolset: "clang"
             name: "Clang 13: C++17-20"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "12"
@@ -663,8 +681,8 @@ jobs:
             container: "ubuntu:22.04"
             b2-toolset: "clang"
             name: "Clang 12: C++17-20"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "11"
@@ -676,8 +694,8 @@ jobs:
             container: "ubuntu:22.04"
             b2-toolset: "clang"
             name: "Clang 11: C++14-17"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "10"
@@ -689,8 +707,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "clang"
             name: "Clang 10: C++14-17"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "9"
@@ -702,8 +720,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "clang"
             name: "Clang 9: C++14-17"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "8"
@@ -715,8 +733,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "clang"
             name: "Clang 8: C++14-17"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "7"
@@ -728,8 +746,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "clang"
             name: "Clang 7: C++14-17"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "6"
@@ -741,8 +759,8 @@ jobs:
             container: "ubuntu:20.04"
             b2-toolset: "clang"
             name: "Clang 6: C++14-17"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "5"
@@ -754,8 +772,8 @@ jobs:
             container: "ubuntu:18.04"
             b2-toolset: "clang"
             name: "Clang 5: C++11-14"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "4"
@@ -767,8 +785,8 @@ jobs:
             container: "ubuntu:18.04"
             b2-toolset: "clang"
             name: "Clang 4: C++11-14"
+            shared: true
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
           - compiler: "clang"
             version: "3.9"
@@ -781,8 +799,8 @@ jobs:
             b2-toolset: "clang"
             is-earliest: true
             name: "Clang 3.9: C++11"
+            shared: false
             build-type: "Release"
-            install: "zlib1g-dev libbrotli-dev"
 
     name: ${{ matrix.name }}
     runs-on: ${{ fromJSON(needs.runner-selection.outputs.labelmatrix)[matrix.runs-on] }}
@@ -823,10 +841,12 @@ jobs:
         uses: alandefreitas/cpp-actions/package-install@v1.8.10
         id: package-install
         with:
-          apt-get-add-architecture: 'i386'
+          apt-get-add-architecture: ${{ matrix.x86 && 'i386' || '' }}
           apt-get: >-
             ${{ matrix.install }}
             build-essential
+            zlib1g-dev libbrotli-dev
+            ${{ matrix.x86 && 'zlib1g-dev:i386 libbrotli-dev:i386' || '' }}
 
       - name: Clone Boost
         uses: alandefreitas/cpp-actions/boost-clone@v1.8.10
@@ -1102,7 +1122,7 @@ jobs:
         include:
           - { name: Windows, os: windows-latest }
           - { name: Ubuntu, os: ubuntu-latest }
-          - { name: MacOS, os: macos-latest }
+          - { name: MacOS, os: macos-15 }
     name: Antora Docs (${{ matrix.name }})
     runs-on: ${{ fromJSON(needs.runner-selection.outputs.labelmatrix)[matrix.os] }}
     defaults:

@@ -8,6 +8,7 @@
 //
 
 #include <boost/rts/brotli/decode.hpp>
+#include <boost/rts/context.hpp>
 
 #include <brotli/decode.h>
 
