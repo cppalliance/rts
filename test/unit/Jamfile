@@ -16,6 +16,7 @@ project
       <library>/boost/rts//boost_rts
       [ ac.check-library /boost/rts//boost_rts_zlib : <library>/boost/rts//boost_rts_zlib : ]
       [ ac.check-library /boost/rts//boost_rts_brotli : <library>/boost/rts//boost_rts_brotli : ]
+      [ ac.check-library /boost/rts//boost_rts_psl : <library>/boost/rts//boost_rts_psl : ]
       <source>../../../url/extra/test_suite/test_main.cpp
       <source>../../../url/extra/test_suite/test_suite.cpp
       <include>.
@@ -25,6 +26,7 @@ project
 
 local SOURCES =
     brotli.cpp
+    psl.cpp
     service.cpp
     virtual_service.cpp
     zlib.cpp

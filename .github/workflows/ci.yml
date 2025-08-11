@@ -845,6 +845,8 @@ jobs:
           apt-get: >-
             ${{ matrix.install }}
             build-essential
+            zlib1g-dev libbrotli-dev libpsl-dev
+            ${{ matrix.x86 && 'zlib1g-dev:i386 libbrotli-dev:i386 libpsl-dev:i386' || '' }}
             zlib1g-dev libbrotli-dev
             ${{ matrix.x86 && 'zlib1g-dev:i386 libbrotli-dev:i386' || '' }}
 
@@ -864,7 +866,7 @@ jobs:
         if: ${{ startsWith(matrix.runs-on, 'windows') }}
         id: package-install-windows
         with:
-          vcpkg: zlib brotli
+          vcpkg: zlib brotli libpsl
           vcpkg-dir: vcpkg-root
           vcpkg-triplet: ${{ matrix.x86 && 'x86-windows-static' || 'x64-windows' }}
 
@@ -884,6 +886,7 @@ jobs:
 
           echo "using zlib   : : <include>\"${home}/vcpkg-root/installed/${triplet}/include\" <search>\"${home}/vcpkg-root/installed/${triplet}/lib\" <dll-path>\"${home}/vcpkg-root/installed/${triplet}/bin\" <name>zlib : <address-model>${addrmdl} ;" | sed 's/\/d\//D:\//g' >> user-config.jam
           echo "using brotli : : <include>\"${home}/vcpkg-root/installed/${triplet}/include\" <search>\"${home}/vcpkg-root/installed/${triplet}/lib\" <dll-path>\"${home}/vcpkg-root/installed/${triplet}/bin\"            : <address-model>${addrmdl} ;" | sed 's/\/d\//D:\//g' >> user-config.jam
+          echo "using libpsl : : <include>\"${home}/vcpkg-root/installed/${triplet}/include\" <search>\"${home}/vcpkg-root/installed/${triplet}/lib\" <dll-path>\"${home}/vcpkg-root/installed/${triplet}/bin\"            : <address-model>${addrmdl} ;" | sed 's/\/d\//D:\//g' >> user-config.jam
 
           cat user-config.jam
 

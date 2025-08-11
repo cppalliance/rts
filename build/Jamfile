@@ -79,3 +79,20 @@ lib boost_rts_brotli
   ;
 
 boost-install boost_rts_brotli ;
+
+# Libpsl
+using libpsl ;
+
+alias rts_psl_sources : [ glob-tree-ex ./src_psl : *.cpp ] ;
+
+lib boost_rts_psl
+  : rts_psl_sources
+  : requirements
+    <library>/boost/rts//boost_rts
+    [ ac.check-library /libpsl//libpsl : <library>/libpsl//libpsl : <build>no ]
+  : usage-requirements
+    <library>/boost/rts//boost_rts
+    <define>BOOST_RTS_HAS_PSL
+  ;
+
+boost-install boost_rts_psl ;

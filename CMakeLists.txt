@@ -150,6 +150,7 @@ else ()
     target_compile_definitions(boost_rts PUBLIC BOOST_RTS_STATIC_LINK)
 endif ()
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Zlib
 find_package(ZLIB)
@@ -166,7 +167,6 @@ if (ZLIB_FOUND)
 endif ()
 
 # Brotli
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(Brotli)
 if (Brotli_FOUND)
     file(GLOB_RECURSE BOOST_RTS_BROTLI_SOURCES CONFIGURE_DEPENDS src_brotli/*.cpp src_brotli/*.hpp)
@@ -178,6 +178,20 @@ if (Brotli_FOUND)
     target_link_libraries(boost_rts_brotli PRIVATE Brotli::common Brotli::decoder Brotli::encoder)
     target_compile_definitions(boost_rts_brotli PUBLIC BOOST_RTS_HAS_BROTLI)
     target_compile_definitions(boost_rts_brotli PRIVATE BOOST_RTS_SOURCE)
+endif ()
+
+# Libpsl
+find_package(Libpsl)
+if (Libpsl_FOUND)
+    file(GLOB_RECURSE BOOST_RTS_PSL_SOURCES CONFIGURE_DEPENDS src_psl/*.cpp src_psl/*.hpp)
+    file(GLOB_RECURSE BOOST_RTS_PSL_HEADERS CONFIGURE_DEPENDS include/boost/rts/psl/*.hpp)
+    source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src_psl PREFIX "src" FILES ${BOOST_RTS_PSL_SOURCES})
+    add_library(boost_rts_psl build/Jamfile ${BOOST_RTS_PSL_HEADERS} ${BOOST_RTS_PSL_SOURCES})
+    add_library(Boost::rts_psl ALIAS boost_rts_psl)
+    target_link_libraries(boost_rts_psl PUBLIC boost_rts)
+    target_link_libraries(boost_rts_psl PRIVATE Libpsl::Libpsl)
+    target_compile_definitions(boost_rts_psl PUBLIC BOOST_RTS_HAS_PSL)
+    target_compile_definitions(boost_rts_psl PRIVATE BOOST_RTS_SOURCE)
 endif ()
 
 #-------------------------------------------------

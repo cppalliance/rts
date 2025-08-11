@@ -1,0 +1,129 @@
+# Copyright (c) 2025 Mohammad Nejati
+#
+# Use, modification and distribution is subject to the Boost Software
+# License Version 1.0. (See accompanying file LICENSE.txt or
+# https://www.bfgroup.xyz/b2/LICENSE.txt)
+
+# Supports the libpsl library
+#
+# After 'using libpsl', the following targets are available:
+#
+# /libpsl//libpsl -- The libpsl library
+
+import project ;
+import ac ;
+import errors ;
+import feature ;
+import "class" : new ;
+import targets ;
+import path ;
+import modules ;
+import indirect ;
+import property ;
+import property-set ;
+import args ;
+
+header = libpsl.h ;
+names = psl libpsl ;
+
+.debug =  [ args.get-arg debug-configuration ] ;
+
+# Initializes the libpsl library.
+#
+# Options for configuring libpsl::
+#
+#   <search>
+#       The directory containing the libpsl binaries.
+#   <name>
+#       Overrides the default name of libpsl library.
+#   <include>
+#       The directory containing the libpsl headers.
+#   <dll-path>
+#       Extra directories to add to library search paths of consumers during
+#       runtime (multiple instances are allowed).
+#
+# If none of these options is specified, then the environmental
+# variables LIBPSL_LIBRARY_PATH, LIBPSL_NAME, and LIBPSL_INCLUDE will
+# be used instead.
+#
+# Examples::
+#
+#   # Find libpsl in the default system location
+#   using libpsl ;
+#   # Find libpsl in /usr/local
+#   using libpsl : 0.16.0
+#     : <include>/usr/local/include <search>/usr/local/lib ;
+#
+rule init (
+    version ?
+    # (currently ignored)
+
+    : options *
+    # A list of the options to use
+
+    : requirements *
+    # The requirements for the target
+
+    : is-default ?
+    )
+{
+    local caller = [ project.current ] ;
+
+    if ! $(.initialized)
+    {
+        .initialized = true ;
+
+        project.initialize $(__name__) ;
+        .project = [ project.current ] ;
+        project libpsl ;
+    }
+
+    local library-path = [ feature.get-values <search> : $(options) ] ;
+    local include-path = [ feature.get-values <include> : $(options) ] ;
+    local library-name = [ feature.get-values <name> : $(options) ] ;
+    local dll-paths = [ property.select <dll-path> : $(options) ] ;
+
+    if ! $(options)
+    {
+        is-default = true ;
+    }
+
+    condition = [ property-set.create $(requirements) ] ;
+    condition = [ property-set.create [ $(condition).base ] ] ;
+
+    if $(.configured.$(condition))
+    {
+        if $(is-default)
+        {
+            if $(.debug)
+            {
+                ECHO "notice: [libpsl] libpsl is already configured" ;
+            }
+        }
+        else
+        {
+            errors.user-error "libpsl is already configured" ;
+        }
+        return ;
+    }
+    else
+    {
+        if $(.debug)
+        {
+            ECHO "notice: [libpsl] Using pre-installed library" ;
+            if $(condition)
+            {
+                ECHO "notice: [libpsl] Condition" [ $(condition).raw ] ;
+            }
+        }
+
+        local mt = [ new ac-library libpsl : $(.project) : $(condition) :
+            $(include-path) : $(library-path) : $(library-name) ] ;
+        $(mt).set-header $(header) ;
+        $(mt).set-default-names $(names) ;
+        $(mt).add-usage-requirements $(dll-paths) ;
+
+        targets.main-target-alternative $(mt) ;
+    }
+    .configured.$(condition) = true ;
+}
