@@ -18,7 +18,7 @@ inaccessible-bases: never
 
 # Generator
 generate: adoc
-base-url: https://www.github.com/cppalliance/rts/blob/develop/include/
+base-url: https://www.github.com/cppalliance/rts/blob/develop/
 
 # Style
 verbose: true
