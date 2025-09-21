@@ -30,15 +30,15 @@ add_executable(boost_rts_tests ${PFILES} ${EXTRAFILES})
 target_include_directories(boost_rts_tests PRIVATE . ../../../url/extra/test_suite)
 target_link_libraries(
     boost_rts_tests PRIVATE
-    boost_rts
+    Boost::rts
     )
 
-if (TARGET boost_rts_zlib)
-    target_link_libraries(boost_rts_tests PRIVATE boost_rts_zlib)
+if (TARGET Boost::rts_zlib)
+    target_link_libraries(boost_rts_tests PRIVATE Boost::rts_zlib)
 endif ()
 
-if (TARGET boost_rts_brotli)
-    target_link_libraries(boost_rts_tests PRIVATE boost_rts_brotli)
+if (TARGET Boost::rts_brotli)
+    target_link_libraries(boost_rts_tests PRIVATE Boost::rts_brotli)
 endif ()
 
 add_test(NAME boost_rts_tests COMMAND boost_rts_tests)
