@@ -32,7 +32,6 @@ else()
 
     describe
     assert
-    static_assert
     variant2
     winapi
     predef

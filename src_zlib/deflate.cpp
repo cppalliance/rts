@@ -13,7 +13,7 @@
 
 #include "stream_cast.hpp"
 
-#include <boost/static_assert.hpp>
+#include <boost/core/static_assert.hpp>
 
 #include <zlib.h>
 
@@ -21,8 +21,8 @@ namespace boost {
 namespace rts {
 namespace zlib {
 
-BOOST_STATIC_ASSERT(sizeof(stream) == sizeof(z_stream_s));
-BOOST_STATIC_ASSERT(is_layout_identical<stream, z_stream_s>());
+BOOST_CORE_STATIC_ASSERT(sizeof(stream) == sizeof(z_stream_s));
+BOOST_CORE_STATIC_ASSERT(is_layout_identical<stream, z_stream_s>());
 
 //------------------------------------------------
 

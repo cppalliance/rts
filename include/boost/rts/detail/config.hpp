@@ -40,10 +40,6 @@ namespace rts {
 
 //------------------------------------------------
 
-#if defined(BOOST_NO_CXX14_AGGREGATE_NSDMI) || defined(BOOST_MSVC)
-# define BOOST_RTS_AGGREGATE_WORKAROUND
-#endif
-
 // Add source location to error codes
 #ifdef BOOST_RTS_NO_SOURCE_LOCATION
 # define BOOST_RTS_ERR(ev) (::boost::system::error_code(ev))
