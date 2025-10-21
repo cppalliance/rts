@@ -59,8 +59,7 @@ set(BOOST_RTS_DEPENDENCIES
     Boost::core
     Boost::mp11
     Boost::system
-    Boost::throw_exception
-    )
+    Boost::throw_exception)
 
 foreach (BOOST_RTS_DEPENDENCY ${BOOST_RTS_DEPENDENCIES})
     if (BOOST_RTS_DEPENDENCY MATCHES "^[ ]*Boost::([A-Za-z0-9_]+)[ ]*$")
