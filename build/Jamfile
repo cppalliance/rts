@@ -8,7 +8,7 @@
 #
 
 import ac ;
-import ../../config/checks/config : requires ;
+import config : requires ;
 
 constant c11-requires :
     [ requires
@@ -42,8 +42,6 @@ lib boost_rts
   : usage-requirements
   ;
 
-boost-install boost_rts ;
-
 # Zlib
 using zlib ;
 
@@ -58,8 +56,6 @@ lib boost_rts_zlib
     <library>/boost/rts//boost_rts
     <define>BOOST_RTS_HAS_ZLIB
   ;
-
-boost-install boost_rts_zlib ;
 
 # Brotli
 using brotli ;
@@ -78,4 +74,4 @@ lib boost_rts_brotli
     <define>BOOST_RTS_HAS_BROTLI
   ;
 
-boost-install boost_rts_brotli ;
+boost-install boost_rts boost_rts_zlib boost_rts_brotli ;
