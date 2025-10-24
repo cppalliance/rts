@@ -13,7 +13,7 @@
 
 #include "stream_cast.hpp"
 
-#include <boost/core/static_assert.hpp>
+#include <boost/core/detail/static_assert.hpp>
 
 #include <zlib.h>
 
