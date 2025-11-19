@@ -13,16 +13,87 @@
 #include <boost/rts/detail/config.hpp>
 #include <boost/rts/detail/call_traits.hpp>
 #include <boost/rts/detail/except.hpp>
-#include <boost/rts/detail/type_info.hpp>
 #include <boost/rts/detail/type_traits.hpp>
+#include <boost/core/typeinfo.hpp>
 #include <boost/core/detail/static_assert.hpp>
+#include <cstring>
 #include <memory>
 #include <type_traits>
 #include <unordered_map>
 #include <vector>
 
+#if ! defined( BOOST_NO_TYPEID )
+#include <typeindex>
+#endif
+
 namespace boost {
 namespace rts {
+
+namespace detail {
+
+#if defined( BOOST_NO_TYPEID )
+
+struct typeindex
+{
+    typeindex(
+        core::typeinfo const& ti) noexcept
+        : n_(std::strlen(ti.name()))
+        , ti_(&ti)
+    { 
+    }
+
+    std::size_t hash_code() const noexcept
+    {
+        constexpr std::size_t offset_basis =
+            (sizeof(std::size_t) == 8)
+                ? 1469598103934665603ull
+                : 2166136261u;
+        constexpr std::size_t prime =
+            (sizeof(std::size_t) == 8)
+                ? 1099511628211ull
+                : 16777619u;
+        auto const s = ti_->name();
+        std::size_t h = offset_basis;
+        for(std::size_t i = 0; i < n_; ++i)
+            h = (h ^ static_cast<unsigned char>(s[i])) * prime;
+        return h;
+    }
+
+    bool operator==(typeindex const& other) const noexcept
+    {
+        return n_ == other.n_ && *ti_ == *other.ti_;
+    }
+
+private:
+    std::size_t n_;
+    core::typeinfo const* ti_;
+};
+
+} // detail
+} // rts
+} // boost
+namespace std {
+template<>
+struct hash< boost::rts::detail::typeindex >
+{
+    std::size_t operator()(
+        boost::rts::detail::typeindex const& t) const noexcept
+    {
+        return t.hash_code();
+    }
+};
+} // std
+namespace boost {
+namespace rts {
+namespace detail {
+
+#else
+
+using typeindex = std::type_index;
+
+#endif
+
+} // detail
 
 /** A container of type-erased objects
 
@@ -135,8 +206,7 @@ public:
     template<class T>
     T* find() const noexcept
     {
-        return static_cast<T*>(find(
-            detail::get_type_info<T>()));
+        return static_cast<T*>(find(BOOST_CORE_TYPEID(T)));
     }
 
     /** Return a reference to the object associated with type T
@@ -457,8 +527,13 @@ private:
 
     struct key
     {
-        detail::type_info const* ti;
-        void* p;
+        detail::typeindex ti =
+            detail::typeindex(BOOST_CORE_TYPEID(void));
+        void* p = nullptr;
+
+        key() = default;
+        key(detail::typeindex const& ti_,
+            void* p_) noexcept : ti(ti_) , p(p_) {}
     };
 
     template<class T, class... Key>
@@ -471,7 +546,7 @@ private:
         key kn[1];
 
         explicit keyset(T& t) noexcept
-            : kn{{ &detail::get_type_info<T>(), &t }}
+            : kn{ key(detail::typeindex(BOOST_CORE_TYPEID(T)), &t) }
         {
         }
     };
@@ -484,11 +559,10 @@ private:
 
         explicit keyset(T& t) noexcept
             : kn{
-                {   &detail::get_type_info<T>(),
-                    std::addressof(t) },
-                {   &detail::get_type_info<Keys>(),
-                    &static_cast<Keys&>(t) }...,
-            }
+                key(detail::typeindex(BOOST_CORE_TYPEID(T)),
+                    std::addressof(t)),
+                key(detail::typeindex(BOOST_CORE_TYPEID(Keys)),
+                    &static_cast<Keys&>(t))..., }
         {
         }
     };
@@ -509,34 +583,13 @@ private:
     void destroy() noexcept;
     BOOST_RTS_DECL any& get(std::size_t i);
     BOOST_RTS_DECL void* find(
-        detail::type_info const& ti) const noexcept;
+        core::typeinfo const& ti) const noexcept;
     BOOST_RTS_DECL void* insert_impl(any_ptr,
         key const* = nullptr, std::size_t = 0);
 
-    struct hash
-    {
-        std::size_t operator()(
-            detail::type_info const* p) const noexcept
-        {
-            return p->hash_code();
-        }
-    };
-
-    struct eq
-    {
-        bool operator()(
-            detail::type_info const* p0,
-            detail::type_info const* p1) const noexcept
-        {
-            return *p0 == *p1;
-        }
-    };
-
     std::vector<any_ptr> v_;
     std::unordered_map<
-        detail::type_info const*,
-            void*, hash, eq> m_;
-
+        detail::typeindex, void*> m_;
 };
 
 //------------------------------------------------

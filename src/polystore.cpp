@@ -82,9 +82,9 @@ get(std::size_t i) -> any&
 void*
 polystore::
 find(
-    detail::type_info const& ti) const noexcept
+    core::typeinfo const& ti) const noexcept
 {
-    auto const it = m_.find(&ti);
+    auto const it = m_.find(ti);
     if(it == m_.end())
         return nullptr;
     return it->second;
