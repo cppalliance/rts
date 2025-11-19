@@ -9,6 +9,7 @@
 
 #include <boost/rts/application.hpp>
 #include <boost/rts/detail/except.hpp>
+#include <boost/assert.hpp>
 #include <mutex>
 #include <vector>
 
@@ -55,44 +56,61 @@ void
 application::
 start()
 {
+    struct action
     {
-        std::lock_guard<std::mutex> lock(impl_->m);
-        if(impl_->st != state::none)
+        action(application& self)
+            : self_(self)
         {
+            std::lock_guard<
+                std::mutex> lock(self_.impl_->m);
             // can't call twice
-            detail::throw_invalid_argument();
+            if(self_.impl_->st != state::none)
+                detail::throw_invalid_argument();
+            self_.impl_->st = state::starting;
         }
-        impl_->st = state::starting;
-    }
-    auto v = get_elements();
-    for(std::size_t i = 0; i < v.size(); ++i)
-    {
-        try
+
+        ~action()
         {
-            v[i].start();
+            if(n_ == 0)
+                return;
+            {
+                std::lock_guard<
+                    std::mutex> lock(self_.impl_->m);
+                BOOST_ASSERT(
+                    self_.impl_->st == state::stopping);
+                self_.impl_->st = state::stopping;
+            }
+            // stop what we started
+            auto v = self_.get_elements();
+            while(n_-- > 0)
+                v[n_].stop();
+            {
+                std::lock_guard<std::mutex> lock(
+                    self_.impl_->m);
+                self_.impl_->st = state::stopped;
+            }
         }
-        catch(std::exception const&)
+
+        void apply()
         {
+            auto v = self_.get_elements();
+            while(n_ < v.size())
             {
-                std::lock_guard<std::mutex> lock(impl_->m);
-                impl_->st = state::stopping;
+                v[n_].stop();
+                ++n_;
             }
-            do
-            {
-                v[i].stop();
-            }
-            while(i-- != 0);
-            {
-                std::lock_guard<std::mutex> lock(impl_->m);
-                impl_->st = state::stopped;
-            }
-            throw;
+            n_ = 0;
+            std::lock_guard<
+                std::mutex> lock(self_.impl_->m);
+            self_.impl_->st = state::running;
         }
-    }
-    {
-        std::lock_guard<std::mutex> lock(impl_->m);
-        impl_->st = state::running;
-    }
+
+    private:
+        application& self_;
+        std::size_t n_ = 0;
+    };
+
+    action(*this).apply();
 }
 
 void
