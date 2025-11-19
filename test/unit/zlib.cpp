@@ -7,7 +7,7 @@
 // Official repository: https://github.com/cppalliance/rts
 //
 
-#include <boost/rts/context.hpp>
+#include <boost/rts/polystore.hpp>
 #include <boost/rts/zlib.hpp>
 
 #include "test_helpers.hpp"
@@ -28,7 +28,7 @@ struct zlib_test
     test_deflate()
     {
         // TODO
-        context ctx;
+        polystore ctx;
         zlib::install_deflate_service(ctx);
     }
 
@@ -36,7 +36,7 @@ struct zlib_test
     test_inflate()
     {
         // TODO
-        context ctx;
+        polystore ctx;
         zlib::install_inflate_service(ctx);
     }
 

@@ -8,7 +8,7 @@
 //
 
 #include <boost/rts/brotli/encode.hpp>
-#include <boost/rts/context.hpp>
+#include <boost/rts/polystore.hpp>
 
 #include <brotli/encode.h>
 
@@ -24,7 +24,7 @@ public:
 
     explicit
     encode_service_impl(
-        rts::context&) noexcept
+        rts::polystore&) noexcept
     {
     }
 
@@ -197,9 +197,9 @@ public:
 };
 
 encode_service&
-install_encode_service(context& ctx)
+install_encode_service(polystore& ctx)
 {
-    return ctx.make_service<encode_service_impl>();
+    return ctx.emplace<encode_service_impl>(ctx);
 }
 
 } // brotli

@@ -8,7 +8,7 @@
 // Official repository: https://github.com/cppalliance/rts
 //
 
-#include <boost/rts/context.hpp>
+#include <boost/rts/polystore.hpp>
 #include <boost/rts/zlib/deflate.hpp>
 
 #include "stream_cast.hpp"
@@ -34,7 +34,7 @@ public:
 
     explicit
     deflate_service_impl(
-        rts::context&) noexcept
+        rts::polystore&) noexcept
     {
     }
 
@@ -178,9 +178,9 @@ public:
 };
 
 deflate_service&
-install_deflate_service(context& ctx)
+install_deflate_service(polystore& ctx)
 {
-    return ctx.make_service<deflate_service_impl>();
+    return ctx.emplace<deflate_service_impl>(ctx);
 }
 
 } // zlib

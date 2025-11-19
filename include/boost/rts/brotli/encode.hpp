@@ -79,8 +79,7 @@ enum constants
 
 /** Provides the Brotli compression API */
 struct BOOST_SYMBOL_VISIBLE
-encode_service
-    : public service
+    encode_service
 {
     virtual bool
     set_parameter(
@@ -168,7 +167,7 @@ encode_service
 
 BOOST_RTS_DECL
 encode_service&
-install_encode_service(context& ctx);
+install_encode_service(polystore& ctx);
 
 } // brotli
 } // rts

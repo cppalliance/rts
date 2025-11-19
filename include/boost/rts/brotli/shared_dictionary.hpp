@@ -10,9 +10,9 @@
 #ifndef BOOST_RTS_BROTLI_SHARED_DICTIONARY_HPP
 #define BOOST_RTS_BROTLI_SHARED_DICTIONARY_HPP
 
+#include <boost/rts/detail/config.hpp>
 #include <boost/rts/brotli/types.hpp>
-#include <boost/rts/context_fwd.hpp>
-#include <boost/rts/service.hpp>
+#include <boost/rts/polystore_fwd.hpp>
 
 namespace boost {
 namespace rts {
@@ -30,8 +30,7 @@ enum class shared_dictionary_type
 
 /** Provides the Brotli shared_dictionary API */
 struct BOOST_SYMBOL_VISIBLE
-shared_dictionary_service
-    : public service
+    shared_dictionary_service
 {
 #if 0
     virtual shared_dictionary*
@@ -55,7 +54,7 @@ shared_dictionary_service
 
 BOOST_RTS_DECL
 shared_dictionary_service&
-install_shared_dictionary_service(context& ctx);
+install_shared_dictionary_service(polystore& ctx);
 
 } // brotli
 } // rts

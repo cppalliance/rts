@@ -46,8 +46,7 @@ using metadata_chunk_func = void (*)(void* opaque, const std::uint8_t* data, std
 
 /** Provides the Brotli decompression API */
 struct BOOST_SYMBOL_VISIBLE
-decode_service
-    : public service
+    decode_service
 {
     virtual bool
     set_parameter(
@@ -120,7 +119,7 @@ decode_service
 
 BOOST_RTS_DECL
 decode_service&
-install_decode_service(context& ctx);
+install_decode_service(polystore& ctx);
 
 } // brotli
 } // rts

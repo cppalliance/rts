@@ -13,15 +13,10 @@ set(EXTRAFILES
     ../../../url/extra/test_suite/test_suite.hpp
     )
 
-set(PFILES
+file(GLOB_RECURSE PFILES CONFIGURE_DEPENDS *.cpp *.hpp)
+list(APPEND PFILES
     CMakeLists.txt
     Jamfile
-
-    brotli.cpp
-    service.cpp
-    test_helpers.hpp
-    virtual_service.cpp
-    zlib.cpp
     )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} PREFIX "" FILES ${PFILES})

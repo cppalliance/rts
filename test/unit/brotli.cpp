@@ -8,7 +8,7 @@
 //
 
 #include <boost/rts/brotli.hpp>
-#include <boost/rts/context.hpp>
+#include <boost/rts/polystore.hpp>
 
 #include "test_helpers.hpp"
 
@@ -28,7 +28,7 @@ struct brotli_test
     test_decode()
     {
         // TODO
-        context ctx;
+        polystore ctx;
         brotli::install_decode_service(ctx);
     }
 
@@ -36,7 +36,7 @@ struct brotli_test
     test_encode()
     {
         // TODO
-        context ctx;
+        polystore ctx;
         brotli::install_encode_service(ctx);
     }
 

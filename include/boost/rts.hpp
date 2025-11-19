@@ -10,7 +10,6 @@
 #ifndef BOOST_RTS_HPP
 #define BOOST_RTS_HPP
 
-#include <boost/rts/context.hpp>
-#include <boost/rts/service.hpp>
+#include <boost/rts/polystore.hpp>
 
 #endif

@@ -21,19 +21,17 @@ else()
   set(deps
     # Primary dependencies
 
+    assert
     config
-    container_hash
     core
-    mp11
     system
     throw_exception
 
     # Secondary dependencies
 
-    describe
-    assert
     variant2
     winapi
+    mp11
     predef
   )
 

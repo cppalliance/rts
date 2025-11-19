@@ -8,7 +8,7 @@
 // Official repository: https://github.com/cppalliance/rts
 //
 
-#include <boost/rts/context.hpp>
+#include <boost/rts/polystore.hpp>
 #include <boost/rts/zlib/inflate.hpp>
 
 #include "stream_cast.hpp"
@@ -34,7 +34,7 @@ public:
 
     explicit
     inflate_service_impl(
-        rts::context&) noexcept
+        rts::polystore&) noexcept
     {
     }
 
@@ -191,9 +191,9 @@ public:
 };
 
 inflate_service&
-install_inflate_service(context& ctx)
+install_inflate_service(polystore& ctx)
 {
-    return ctx.make_service<inflate_service_impl>();
+    return ctx.emplace<inflate_service_impl>(ctx);
 }
 
 } // zlib

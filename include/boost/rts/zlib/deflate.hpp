@@ -11,7 +11,7 @@
 #ifndef BOOST_RTS_ZLIB_DEFLATE_HPP
 #define BOOST_RTS_ZLIB_DEFLATE_HPP
 
-#include <boost/rts/context_fwd.hpp>
+#include <boost/rts/polystore_fwd.hpp>
 #include <boost/rts/detail/config.hpp>
 #include <boost/rts/zlib/stream.hpp>
 
@@ -22,8 +22,7 @@ namespace zlib {
 /** Provides the ZLib compression API
 */
 struct BOOST_SYMBOL_VISIBLE
-deflate_service
-    : public service
+    deflate_service
 {
     virtual char const* version() const noexcept = 0;
     virtual int init(stream& st, int level) const = 0;
@@ -44,7 +43,7 @@ deflate_service
 
 BOOST_RTS_DECL
 deflate_service&
-install_deflate_service(context& ctx);
+install_deflate_service(polystore& ctx);
 
 } // zlib
 } // rts

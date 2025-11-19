@@ -8,7 +8,7 @@
 //
 
 #include <boost/rts/brotli/decode.hpp>
-#include <boost/rts/context.hpp>
+#include <boost/rts/polystore.hpp>
 
 #include <brotli/decode.h>
 
@@ -24,7 +24,7 @@ public:
 
     explicit
     decode_service_impl(
-        rts::context&) noexcept
+        rts::polystore&) noexcept
     {
     }
 
@@ -178,9 +178,9 @@ public:
 };
 
 decode_service&
-install_decode_service(context& ctx)
+install_decode_service(polystore& ctx)
 {
-    return ctx.make_service<decode_service_impl>();
+    return ctx.emplace<decode_service_impl>(ctx);
 }
 
 } // brotli

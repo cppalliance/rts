@@ -23,14 +23,7 @@ project
       <target-os>darwin,<undefined-sanitizer>norecover:<link>static
     ;
 
-local SOURCES =
-    brotli.cpp
-    service.cpp
-    virtual_service.cpp
-    zlib.cpp
-    ;
-
-for local f in $(SOURCES)
+for local f in [ glob-tree-ex . : *.cpp : ssl_*.cpp ]
 {
-    run $(f) : : : ;
+    run $(f) ;
 }

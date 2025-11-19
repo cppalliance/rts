@@ -11,7 +11,7 @@
 #ifndef BOOST_RTS_ZLIB_INFLATE_HPP
 #define BOOST_RTS_ZLIB_INFLATE_HPP
 
-#include <boost/rts/context_fwd.hpp>
+#include <boost/rts/polystore_fwd.hpp>
 #include <boost/rts/detail/config.hpp>
 #include <boost/rts/zlib/stream.hpp>
 
@@ -22,8 +22,7 @@ namespace zlib {
 /** Provides the ZLib decompression API
 */
 struct BOOST_SYMBOL_VISIBLE
-inflate_service
-    : public service
+    inflate_service
 {
     virtual char const* version() const noexcept = 0;
     virtual int init(stream& st) const = 0;
@@ -46,7 +45,7 @@ inflate_service
 
 BOOST_RTS_DECL
 inflate_service&
-install_inflate_service(context& ctx);
+install_inflate_service(polystore& ctx);
 
 } // zlib
 } // rts
