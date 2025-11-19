@@ -20,10 +20,12 @@ project
       <source>../../../url/extra/test_suite/test_suite.cpp
       <include>.
       <include>../../../url/extra/test_suite
+      <warnings>extra
+      <warnings-as-errors>on
       <target-os>darwin,<undefined-sanitizer>norecover:<link>static
     ;
 
-for local f in [ glob-tree-ex . : *.cpp : ssl_*.cpp ]
+for local f in [ glob-tree-ex . : *.cpp : ]
 {
     run $(f) ;
 }

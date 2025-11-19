@@ -23,7 +23,7 @@ base-url: https://www.github.com/cppalliance/rts/blob/develop/
 # Style
 verbose: true
 multipage: true
-use-system-libc: true
-use-system-stdlib: true
+# use-system-libc: true
+# use-system-stdlib: true
 
-cmake: '-DCMAKE_CXX_STANDARD=20 -DBOOST_RTS_BUILD_TESTS=OFF -DBOOST_RTS_BUILD_EXAMPLES=OFF'
+cmake: '-DCMAKE_CXX_STANDARD=20 -DBOOST_RTS_MRDOCS_BUILD=ON -DBOOST_RTS_BUILD_TESTS=OFF -DBOOST_RTS_BUILD_EXAMPLES=OFF'

@@ -19,8 +19,6 @@ ui:
 
 antora:
   extensions:
-    - require: '@antora/lunr-extension' # https://gitlab.com/antora/antora-lunr-extension
-      index_latest_only: true
     - require: '@cppalliance/antora-cpp-tagfiles-extension'
       cpp-tagfiles:
         using-namespaces:

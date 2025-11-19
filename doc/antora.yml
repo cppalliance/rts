@@ -20,3 +20,6 @@ nav:
 ext:
   cpp-reference:
     config: doc/mrdocs.yml
+  cpp-tagfiles:
+    using-namespaces:
+      - boost::rts
