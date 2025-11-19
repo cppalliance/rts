@@ -181,15 +181,6 @@ public:
     */
     polystore() = default;
 
-    /** Remove and destroy all objects in the container.
-
-        All stored objects are destroyed in the reverse order
-        of construction. The container is left empty.
-    */
-    BOOST_RTS_DECL
-    void
-    clear() noexcept;
-
     /** Return a pointer to the object associated with type `T`, or `nullptr`
 
         If no object associated with `T` exists in the container,
@@ -499,6 +490,22 @@ protected:
     struct any;
     class elements;
 
+    /** Remove and destroy all objects in the container.
+
+        All stored objects are destroyed in the reverse order
+        of construction. The container is left empty.
+    */
+    BOOST_RTS_DECL
+    void
+    clear() noexcept;
+
+    /** Return a range of all stored elements
+        @par Thread Safety
+        `const` member function calls are thread-safe.
+        Calls to non-`const` member functions must not run concurrently
+        with other member functions on the same object.
+        @return An object representing the range of stored elements.
+    */
     BOOST_RTS_DECL
     elements
     get_elements() noexcept;
