@@ -1,16 +1,16 @@
 site:
-  title: Boost.RunTimeServices
+  title: Boost.Capy
   url: https://antora.cppalliance.org/develop/lib/doc
-  start_page: rts::index.adoc
+  start_page: capy::index.adoc
   robots: allow
   keys:
-    repo_url: 'https://github.com/cppalliance/rts'
+    repo_url: 'https://github.com/cppalliance/capy'
 
 content:
   sources:
     - url: ..
       start_path: doc
-      edit_url: 'https://github.com/cppalliance/rts/edit/{refname}/{path}'
+      edit_url: 'https://github.com/cppalliance/capy/edit/{refname}/{path}'
 
 ui:
   bundle:

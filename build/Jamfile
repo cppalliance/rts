@@ -4,7 +4,7 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
-# Official repository: https://github.com/cppalliance/rts
+# Official repository: https://github.com/cppalliance/capy
 #
 
 import ac ;
@@ -20,24 +20,24 @@ constant c11-requires :
     ]
     ;
 
-path-constant RTS_ROOT : .. ;
+path-constant CAPY_ROOT : .. ;
 
-project boost/rts
+project boost/capy
   : requirements
     $(c11-requires)
-    <define>BOOST_RTS_SOURCE
+    <define>BOOST_CAPY_SOURCE
   : common-requirements
-    <link>shared:<define>BOOST_RTS_DYN_LINK
-    <link>static:<define>BOOST_RTS_STATIC_LINK
+    <link>shared:<define>BOOST_CAPY_DYN_LINK
+    <link>static:<define>BOOST_CAPY_STATIC_LINK
   : usage-requirements
-    <define>BOOST_RTS_NO_LIB
-  : source-location $(RTS_ROOT)
+    <define>BOOST_CAPY_NO_LIB
+  : source-location $(CAPY_ROOT)
   ;
 
-alias rts_sources : [ glob-tree-ex ./src : *.cpp ] ;
+alias capy_sources : [ glob-tree-ex ./src : *.cpp ] ;
 
-lib boost_rts
-  : rts_sources
+lib boost_capy
+  : capy_sources
   : requirements
   : usage-requirements
   ;
@@ -45,33 +45,33 @@ lib boost_rts
 # Zlib
 using zlib ;
 
-alias rts_zlib_sources : [ glob-tree-ex ./src_zlib : *.cpp ] ;
+alias capy_zlib_sources : [ glob-tree-ex ./src_zlib : *.cpp ] ;
 
-lib boost_rts_zlib
-  : rts_zlib_sources
+lib boost_capy_zlib
+  : capy_zlib_sources
   : requirements
-    <library>/boost/rts//boost_rts
+    <library>/boost/capy//boost_capy
     [ ac.check-library /zlib//zlib : <library>/zlib//zlib : <build>no ]
   : usage-requirements
-    <library>/boost/rts//boost_rts
-    <define>BOOST_RTS_HAS_ZLIB
+    <library>/boost/capy//boost_capy
+    <define>BOOST_CAPY_HAS_ZLIB
   ;
 
 # Brotli
 using brotli ;
 
-alias rts_brotli_sources : [ glob-tree-ex ./src_brotli : *.cpp ] ;
+alias capy_brotli_sources : [ glob-tree-ex ./src_brotli : *.cpp ] ;
 
-lib boost_rts_brotli
-  : rts_brotli_sources
+lib boost_capy_brotli
+  : capy_brotli_sources
   : requirements
-    <library>/boost/rts//boost_rts
+    <library>/boost/capy//boost_capy
     [ ac.check-library /brotli//brotlicommon : <library>/brotli//brotlicommon : <build>no ]
     [ ac.check-library /brotli//brotlidec : <library>/brotli//brotlidec : <build>no ]
     [ ac.check-library /brotli//brotlienc : <library>/brotli//brotlienc : <build>no ]
   : usage-requirements
-    <library>/boost/rts//boost_rts
-    <define>BOOST_RTS_HAS_BROTLI
+    <library>/boost/capy//boost_capy
+    <define>BOOST_CAPY_HAS_BROTLI
   ;
 
-boost-install boost_rts boost_rts_zlib boost_rts_brotli ;
+boost-install boost_capy boost_capy_zlib boost_capy_brotli ;

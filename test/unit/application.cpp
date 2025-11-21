@@ -8,12 +8,12 @@
 //
 
 // Test that header file is self-contained.
-#include <boost/rts/application.hpp>
+#include <boost/capy/application.hpp>
 
 #include "test_suite.hpp"
 
 namespace boost {
-namespace rts {
+namespace capy {
 
 struct application_test
 {
@@ -26,7 +26,7 @@ struct application_test
 
 TEST_SUITE(
     application_test,
-    "boost.rts.application");
+    "boost.capy.application");
 
-} // rts
+} // capy
 } // boost

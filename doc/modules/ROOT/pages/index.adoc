@@ -5,12 +5,12 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-= Boost.RunTimeServices
+= Boost.Capy
 
-Boost.RunTimeServices is a portable, low-level C++ library which provides
+Boost.Capy is a portable, low-level C++ library which provides
 facilities for creating and accessing optional services during runtime.
 
 * Require only C++11
@@ -20,12 +20,12 @@ facilities for creating and accessing optional services during runtime.
 
 == Embedded
 
-Boost.RunTimeServices works great on embedded devices.
+Boost.Capy works great on embedded devices.
 It is designed to work without exceptions and RTTI if desired.
 
 == Tested Compilers
 
-Boost.RunTimeServices has been tested with the following compilers:
+Boost.Capy has been tested with the following compilers:
 
 * clang: 3.8, 4, 5, 6, 7, 8, 9, 10, 11, 12
 * gcc: 4.8, 4.9, 5, 6, 7, 8, 9, 10, 11

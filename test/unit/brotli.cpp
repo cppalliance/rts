@@ -4,16 +4,16 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-#include <boost/rts/brotli.hpp>
-#include <boost/rts/polystore.hpp>
+#include <boost/capy/brotli.hpp>
+#include <boost/capy/polystore.hpp>
 
 #include "test_helpers.hpp"
 
 namespace boost {
-namespace rts {
+namespace capy {
 
 struct brotli_test
 {
@@ -44,14 +44,14 @@ struct brotli_test
     run()
     {
         test_error_code();
-    #ifdef BOOST_RTS_HAS_BROTLI
+    #ifdef BOOST_CAPY_HAS_BROTLI
         test_decode();
         test_encode();
     #endif
     }
 };
 
-TEST_SUITE(brotli_test, "boost.rts.brotli");
+TEST_SUITE(brotli_test, "boost.capy.brotli");
 
-} // namespace rts
+} // namespace capy
 } // namespace boost

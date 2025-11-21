@@ -4,17 +4,17 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-#include <boost/rts/detail/config.hpp>
-#include <boost/rts/detail/except.hpp>
+#include <boost/capy/detail/config.hpp>
+#include <boost/capy/detail/except.hpp>
 #include <boost/throw_exception.hpp>
 #include <stdexcept>
 #include <typeinfo>
 
 namespace boost {
-namespace rts {
+namespace capy {
 namespace detail {
 
 void
@@ -41,5 +41,5 @@ throw_logic_error(
 }
 
 } // detail
-} // rts
+} // capy
 } // boost

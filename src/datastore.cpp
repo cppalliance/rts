@@ -4,14 +4,14 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-#include <boost/rts/datastore.hpp>
+#include <boost/capy/datastore.hpp>
 #include <utility>
 
 namespace boost {
-namespace rts {
+namespace capy {
 
-} // rts
+} // capy
 } // boost

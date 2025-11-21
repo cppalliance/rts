@@ -4,7 +4,7 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
-# Official repository: https://github.com/cppalliance/rts
+# Official repository: https://github.com/cppalliance/capy
 #
 
 import ac ;
@@ -13,9 +13,9 @@ import testing ;
 project
     : requirements
       $(c11-requires)
-      <library>/boost/rts//boost_rts
-      [ ac.check-library /boost/rts//boost_rts_zlib : <library>/boost/rts//boost_rts_zlib : ]
-      [ ac.check-library /boost/rts//boost_rts_brotli : <library>/boost/rts//boost_rts_brotli : ]
+      <library>/boost/capy//boost_capy
+      [ ac.check-library /boost/capy//boost_capy_zlib : <library>/boost/capy//boost_capy_zlib : ]
+      [ ac.check-library /boost/capy//boost_capy_brotli : <library>/boost/capy//boost_capy_brotli : ]
       <source>../../../url/extra/test_suite/test_main.cpp
       <source>../../../url/extra/test_suite/test_suite.cpp
       <include>.
