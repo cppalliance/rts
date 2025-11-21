@@ -13,10 +13,10 @@ set(__ignore__ ${CMAKE_C_COMPILER})
 set(__ignore__ ${CMAKE_C_FLAGS})
 
 if(BOOST_CI_INSTALL_TEST)
-  find_package(Boost CONFIG REQUIRED COMPONENTS rts)
+  find_package(Boost CONFIG REQUIRED COMPONENTS capy)
 else()
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-  add_subdirectory(../.. boostorg/rts)
+  add_subdirectory(../.. boostorg/capy)
 
   set(deps
     # Primary dependencies
@@ -41,7 +41,7 @@ else()
 endif()
 
 add_executable(main main.cpp)
-target_link_libraries(main Boost::rts)
+target_link_libraries(main Boost::capy)
 
 enable_testing()
 add_test(NAME main COMMAND main)

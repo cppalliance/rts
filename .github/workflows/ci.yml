@@ -8,7 +8,7 @@
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
-# Official repository: https://github.com/cppalliance/rts/
+# Official repository: https://github.com/cppalliance/capy/
 #
 
 name: CI
@@ -859,10 +859,10 @@ jobs:
           tar -xf node-v20.9.0-linux-x64-glibc-217.tar.xz --strip-components 1 -C /node20217
           ldd /__e/node20/bin/node
 
-      - name: Clone Boost.RunTimeServices
+      - name: Clone Boost.Capy
         uses: actions/checkout@v4
         with:
-          path: rts-root
+          path: capy-root
 
       - name: Setup C++
         uses: alandefreitas/cpp-actions/setup-cpp@v1.9.0
@@ -891,8 +891,8 @@ jobs:
           branch: ${{ (github.ref_name == 'master' && github.ref_name) || 'develop' }}
           boost-dir: boost-source
           modules-exclude-paths: ''
-          scan-modules-dir: rts-root
-          scan-modules-ignore: rts
+          scan-modules-dir: capy-root
+          scan-modules-ignore: capy
 
       - name: Install Packages (Windows)
         uses: alandefreitas/cpp-actions/package-install@v1.9.0
@@ -914,8 +914,8 @@ jobs:
           triplet=${{ matrix.x86 && 'x86-windows-static' || 'x64-windows' }}
           addrmdl=${{ matrix.x86 && '32' || '64' }}
 
-          # This is temporary until we move rts/build/brotli.jam to boost/tools/build
-          echo "import-search ${home}/boost-root/libs/rts/build ;" | sed 's/\/d\//D:\//g' >> user-config.jam
+          # This is temporary until we move capy/build/brotli.jam to boost/tools/build
+          echo "import-search ${home}/boost-root/libs/capy/build ;" | sed 's/\/d\//D:\//g' >> user-config.jam
 
           echo "using zlib   : : <include>\"${home}/vcpkg-root/installed/${triplet}/include\" <search>\"${home}/vcpkg-root/installed/${triplet}/lib\" <dll-path>\"${home}/vcpkg-root/installed/${triplet}/bin\" <name>zlib : <address-model>${addrmdl} ;" | sed 's/\/d\//D:\//g' >> user-config.jam
           echo "using brotli : : <include>\"${home}/vcpkg-root/installed/${triplet}/include\" <search>\"${home}/vcpkg-root/installed/${triplet}/lib\" <dll-path>\"${home}/vcpkg-root/installed/${triplet}/bin\"            : <address-model>${addrmdl} ;" | sed 's/\/d\//D:\//g' >> user-config.jam
@@ -960,7 +960,7 @@ jobs:
           echo -E "boost_root=$boost_root" >> $GITHUB_OUTPUT
 
           # Patch boost-root with workspace module
-          cp -r "$workspace_root"/rts-root "libs/$module"
+          cp -r "$workspace_root"/capy-root "libs/$module"
 
       - name: Boost B2 Workflow
         uses: alandefreitas/cpp-actions/b2-workflow@v1.9.0
@@ -969,7 +969,7 @@ jobs:
           ASAN_OPTIONS: ${{ ((matrix.compiler == 'apple-clang' || matrix.compiler == 'clang') && 'detect_invalid_pointer_pairs=0:strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1') || 'detect_invalid_pointer_pairs=2:strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1' }}
         with:
           source-dir: boost-root
-          modules: rts
+          modules: capy
           toolset: ${{ matrix.b2-toolset }}
           build-variant: ${{ matrix.build-type }}
           cxx: ${{ steps.setup-cpp.outputs.cxx || matrix.cxx || '' }}
@@ -1009,7 +1009,7 @@ jobs:
           export-compile-commands: ${{ matrix.time-trace }}
           package: false
           package-artifact: false
-          ref-source-dir: boost-root/libs/rts
+          ref-source-dir: boost-root/libs/capy
           toolchain: ${{ (startsWith(matrix.runs-on, 'windows') && steps.patch-user-config.outputs.toolchain) || '' }}
 
       - name: Set Path
@@ -1041,7 +1041,7 @@ jobs:
           extra-args: |
             -D BOOST_CI_INSTALL_TEST=ON
             -D CMAKE_PREFIX_PATH=${{ steps.patch.outputs.workspace_root }}/.local
-          ref-source-dir: boost-root/libs/rts
+          ref-source-dir: boost-root/libs/capy
           trace-commands: true
 
       - name: Subdirectory Integration Workflow
@@ -1062,7 +1062,7 @@ jobs:
           install: false
           cmake-version: '>=3.15'
           extra-args: -D BOOST_CI_INSTALL_TEST=OFF
-          ref-source-dir: boost-root/libs/rts/test/cmake_test
+          ref-source-dir: boost-root/libs/capy/test/cmake_test
 
       - name: Root Project CMake Workflow
         uses: alandefreitas/cpp-actions/cmake-workflow@v1.9.0
@@ -1092,7 +1092,7 @@ jobs:
         uses: alandefreitas/cpp-actions/flamegraph@v1.9.0
         if: matrix.time-trace
         with:
-          source-dir: boost-root/libs/rts
+          source-dir: boost-root/libs/capy
           build-dir: boost-root/__build_cmake_test__
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -1135,7 +1135,7 @@ jobs:
     timeout-minutes: 120
 
     steps:
-      - name: Clone Boost.RunTimeServices
+      - name: Clone Boost.Capy
         uses: actions/checkout@v4
         with:
           # Avoid the common API rate limit exceeded error in boostorg by including 100 latest commits in any case
@@ -1169,10 +1169,10 @@ jobs:
         with:
           apt-get: git cmake
 
-      - name: Clone Boost.RunTimeServices
+      - name: Clone Boost.Capy
         uses: actions/checkout@v4
         with:
-          path: rts-root
+          path: capy-root
 
       - name: Clone Boost
         uses: alandefreitas/cpp-actions/boost-clone@v1.9.0
@@ -1181,8 +1181,8 @@ jobs:
           branch: ${{ (github.ref_name == 'master' && github.ref_name) || 'develop' }}
           boost-dir: boost-source
           modules-exclude-paths: ''
-          scan-modules-dir: rts-root
-          scan-modules-ignore: rts
+          scan-modules-dir: capy-root
+          scan-modules-ignore: capy
 
       - name: Patch Boost
         id: patch
@@ -1214,7 +1214,7 @@ jobs:
           echo -E "boost_root=$boost_root" >> $GITHUB_OUTPUT
 
           # Patch boost-root with workspace module
-          cp -r "$workspace_root"/rts-root "libs/$module"
+          cp -r "$workspace_root"/capy-root "libs/$module"
 
 
       - uses: actions/setup-node@v4
@@ -1233,7 +1233,7 @@ jobs:
           
           BOOST_SRC_DIR="$(pwd)/boost-root"
           export BOOST_SRC_DIR
-          cd boost-root/libs/rts
+          cd boost-root/libs/capy
           
           cd doc
           bash ./build_antora.sh
@@ -1248,4 +1248,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: antora-docs-${{ matrix.name }}
-          path: boost-root/libs/rts/doc/build/site
+          path: boost-root/libs/capy/doc/build/site

@@ -4,17 +4,17 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
 // Test that header file is self-contained.
-#include <boost/rts/polystore.hpp>
+#include <boost/capy/polystore.hpp>
 #include <boost/core/detail/static_assert.hpp>
 
 #include "test_suite.hpp"
 
 namespace boost {
-namespace rts {
+namespace capy {
 
 struct polystore_test
 {
@@ -327,7 +327,7 @@ struct polystore_test
     }
 };
 
-TEST_SUITE(polystore_test, "boost.rts.polystore");
+TEST_SUITE(polystore_test, "boost.capy.polystore");
 
-} // rts
+} // capy
 } // boost

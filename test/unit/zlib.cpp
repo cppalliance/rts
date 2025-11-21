@@ -4,16 +4,16 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-#include <boost/rts/polystore.hpp>
-#include <boost/rts/zlib.hpp>
+#include <boost/capy/polystore.hpp>
+#include <boost/capy/zlib.hpp>
 
 #include "test_helpers.hpp"
 
 namespace boost {
-namespace rts {
+namespace capy {
 
 struct zlib_test
 {
@@ -44,14 +44,14 @@ struct zlib_test
     run()
     {
         test_error_code();
-    #ifdef BOOST_RTS_HAS_ZLIB
+    #ifdef BOOST_CAPY_HAS_ZLIB
         test_deflate();
         test_inflate();
     #endif
     }
 };
 
-TEST_SUITE(zlib_test, "boost.rts.zlib");
+TEST_SUITE(zlib_test, "boost.capy.zlib");
 
-} // namespace rts
+} // namespace capy
 } // namespace boost

@@ -4,13 +4,13 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-#include <boost/rts/zlib/error.hpp>
+#include <boost/capy/zlib/error.hpp>
 
 namespace boost {
-namespace rts {
+namespace capy {
 namespace zlib {
 namespace detail {
 
@@ -18,7 +18,7 @@ const char*
 error_cat_type::
 name() const noexcept
 {
-    return "boost.rts.zlib";
+    return "boost.capy.zlib";
 }
 
 bool
@@ -78,5 +78,5 @@ error_cat_type error_cat;
 
 } // detail
 } // zlib
-} // rts
+} // capy
 } // boost

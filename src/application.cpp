@@ -7,14 +7,14 @@
 // Official repository: https://github.com/cppalliance/beast2
 //
 
-#include <boost/rts/application.hpp>
-#include <boost/rts/detail/except.hpp>
+#include <boost/capy/application.hpp>
+#include <boost/capy/detail/except.hpp>
 #include <boost/assert.hpp>
 #include <mutex>
 #include <vector>
 
 namespace boost {
-namespace rts {
+namespace capy {
 
 enum application::state : char
 {
@@ -134,5 +134,5 @@ stop()
     }
 }
 
-} // rts
+} // capy
 } // boost

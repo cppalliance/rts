@@ -4,18 +4,18 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-#include <boost/rts/brotli/shared_dictionary.hpp>
-#include <boost/rts/polystore.hpp>
+#include <boost/capy/brotli/shared_dictionary.hpp>
+#include <boost/capy/polystore.hpp>
 
 #if 0
 #include <brotli/shared_dictionary.h>
 #endif
 
 namespace boost {
-namespace rts {
+namespace capy {
 namespace brotli {
 
 class shared_dictionary_service_impl
@@ -26,7 +26,7 @@ public:
 
     explicit
     shared_dictionary_service_impl(
-        rts::polystore&) noexcept
+        capy::polystore&) noexcept
     {
     }
 
@@ -78,5 +78,5 @@ install_shared_dictionary_service(polystore& ctx)
 }
 
 } // brotli
-} // rts
+} // capy
 } // boost

@@ -5,11 +5,11 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-// Official repository: https://github.com/cppalliance/rts
+// Official repository: https://github.com/cppalliance/capy
 //
 
-#include <boost/rts/polystore.hpp>
-#include <boost/rts/zlib/deflate.hpp>
+#include <boost/capy/polystore.hpp>
+#include <boost/capy/zlib/deflate.hpp>
 
 #include "stream_cast.hpp"
 
@@ -18,7 +18,7 @@
 #include <zlib.h>
 
 namespace boost {
-namespace rts {
+namespace capy {
 namespace zlib {
 
 BOOST_CORE_STATIC_ASSERT(sizeof(stream) == sizeof(z_stream_s));
@@ -34,7 +34,7 @@ public:
 
     explicit
     deflate_service_impl(
-        rts::polystore&) noexcept
+        capy::polystore&) noexcept
     {
     }
 
@@ -184,5 +184,5 @@ install_deflate_service(polystore& ctx)
 }
 
 } // zlib
-} // rts
+} // capy
 } // boost

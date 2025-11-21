@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <explicit-failures-markup>
-    <library name="rts">
+    <library name="capy">
         <mark-unusable>
             <toolset name="*c++98"/>
             <toolset name="*gnu98"/>

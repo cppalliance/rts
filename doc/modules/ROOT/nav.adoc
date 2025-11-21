@@ -1,1 +1,1 @@
-* xref:reference:boost/rts.adoc[Reference]
+* xref:reference:boost/capy.adoc[Reference]
