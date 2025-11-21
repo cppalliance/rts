@@ -200,6 +200,25 @@ public:
         return static_cast<T*>(find(BOOST_CORE_TYPEID(T)));
     }
 
+    /** Assign the pointer for the object associated with `T`, or `nullptr`.
+        
+        If no object of type `T` is stored, @p t is set to `nullptr`.
+
+        @par Thread Safety
+        `const` member functions are thread-safe. Non-`const` functions
+        must not run concurrently with any other member function on the
+        same instance.
+
+        @param t The pointer to assign.
+        @return `true` if an object of type `T` is present, otherwise `false`.
+    */
+    template<class T>
+    bool find(T*& t) const noexcept
+    {
+        t = find<T>();
+        return t != nullptr;
+    }
+
     /** Return a reference to the object associated with type T
 
         If no such object exists in the container, an exception is thrown.
